@@ -24,7 +24,7 @@ router.get(
     passport.authenticate("google", { failureRedirect: "/login" }),
     async (req, res, next) => {
         try {
-            const { user } = req
+            constUser = req
             if (user && user.accessToken) {
                 res.cookie("accessToken", user.accessToken, {
                     httpOnly: true,

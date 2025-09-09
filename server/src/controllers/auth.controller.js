@@ -6,10 +6,7 @@ import bcrypt from 'bcrypt';
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
 import role from '../middlewares/rbac.middleware.js';
-import { User } from '../models/user.model.js';
 import { BadRequestError, NotFoundError } from '../core/error.response.js';
-import ForgotPasswordOTP from '../models/forgotPasswordOTP.model.js';
-import UserOTPVerification from '../models/userOTPVerification.model.js';
 import brevoSendEmail from '../configs/brevo.config.js';
 
 class AuthController {

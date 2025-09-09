@@ -1,6 +1,6 @@
 import passport from "passport"
 import { Strategy as GoogleStrategy } from "passport-google-oauth20"
-import { User } from "../models/user.model.js"
+import User from "../models/user.model.js"
 import axios from "axios"
 import { generateToken } from "../utils/token.util.js"
 import dotenv from 'dotenv'
