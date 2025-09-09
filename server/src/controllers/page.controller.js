@@ -23,6 +23,14 @@ class PageController {
         }
         res.render('login', user);
     }
+    
+    landingPage = async (req, res) => {
+        const mockUser = {
+            name: 'Hello'
+        }
+        
+        res.render('landingPage', mockUser);
+    }
 }
 
 export default new PageController()
