@@ -71,17 +71,44 @@
                         </div>
 
                         <!-- Location Filter -->
-                        <div class="filter-group">
-                            <label class="filter-label">Location</label>
-                            <select class="filter-select">
-                                <option value="">All Locations</option>
-                                <option value="ho-chi-minh">Ho Chi Minh City</option>
-                                <option value="hanoi">Hanoi</option>
-                                <option value="da-nang">Da Nang</option>
-                                <option value="can-tho">Can Tho</option>
-                                <option value="hai-phong">Hai Phong</option>
-                            </select>
+                        <div class="filters-section">
+                            <div class="filter-group">
+                                <label class="filter-label">Location</label>
+                                <select class="filter-select">
+                                    <option value="">All Locations</option>
+                                </select>
+                            </div>
                         </div>
+                        <script>
+                            // Populate Vietnamese provinces dropdown
+                            document.addEventListener("DOMContentLoaded", () => {
+                                // Populate Vietnamese provinces dropdown
+                                const locationSelect = document.querySelector('.filter-select');
+                                const vietnameseProvinces = [
+                                    'An Giang', 'Bà Rịa - Vũng Tàu', 'Bắc Giang', 'Bắc Kạn', 'Bạc Liêu',
+                                    'Bắc Ninh', 'Bến Tre', 'Bình Định', 'Bình Dương', 'Bình Phước',
+                                    'Bình Thuận', 'Cà Mau', 'Cao Bằng', 'Đắk Lắk', 'Đắk Nông',
+                                    'Điện Biên', 'Đồng Nai', 'Đồng Tháp', 'Gia Lai', 'Hà Giang',
+                                    'Hà Nam', 'Hà Tĩnh', 'Hải Dương', 'Hậu Giang', 'Hòa Bình'
+                                ];
+
+                                if (locationSelect) {
+                                    // Clear existing options except the first one (All Locations)
+                                    locationSelect.innerHTML = '<option value="">All Locations</option>';
+
+                                    // Add Vietnamese provinces
+                                    vietnameseProvinces.forEach(province => {
+                                        const option = document.createElement('option');
+                                        option.value = province.toLowerCase().replace(/\s+/g, '-').replace(/[àáạảãâầấậẩẫăằắặẳẵ]/g, 'a')
+                                            .replace(/[èéẹẻẽêềếệểễ]/g, 'e').replace(/[ìíịỉĩ]/g, 'i')
+                                            .replace(/[òóọỏõôồốộổỗơờớợởỡ]/g, 'o').replace(/[ùúụủũưừứựửữ]/g, 'u')
+                                            .replace(/[ỳýỵỷỹ]/g, 'y').replace(/đ/g, 'd').replace(/[^\w\s-]/g, '');
+                                        option.textContent = province;
+                                        locationSelect.appendChild(option);
+                                    });
+                                }
+                            });
+                        </script>
 
                         <!-- Availability Filter -->
                         <div class="filter-group">
@@ -119,7 +146,7 @@
             <div class="results-section">
                 <div class="results-header">
                     <h2 class="results-title">Blood Inventory Results</h2>
-                    <span class="results-count">Showing 24 records</span>
+                    <span class="results-count">Showing 6 records</span>
                 </div>
 
                 <div class="blood-records-grid">
@@ -138,8 +165,11 @@
                                     <span class="detail-value">Whole Blood</span>
                                 </div>
                                 <div class="detail-item">
-                                    <span class="detail-label">Units:</span>
-                                    <span class="detail-value">45 units</span>
+                                    <span class="detail-label">Amount:</span>
+                                    <span class="detail-value">360.0 liters</span>
+                                </div>
+                                <div class="blood-level">
+                                    <div class="blood-bar"></div>
                                 </div>
                                 <div class="detail-item">
                                     <span class="detail-label">Expiry:</span>
@@ -167,8 +197,11 @@
                                     <span class="detail-value">Red Blood Cells</span>
                                 </div>
                                 <div class="detail-item">
-                                    <span class="detail-label">Units:</span>
-                                    <span class="detail-value">8 units</span>
+                                    <span class="detail-label">Amount:</span>
+                                    <span class="detail-value">500 milliliters</span>
+                                </div>
+                                <div class="blood-level">
+                                    <div class="blood-bar"></div>
                                 </div>
                                 <div class="detail-item">
                                     <span class="detail-label">Expiry:</span>
@@ -181,8 +214,6 @@
                             <button class="btn-ghost btn-small">Details</button>
                         </div>
                     </div>
-
-                    <!-- Additional sample cards... -->
                     <div class="blood-record-card">
                         <div class="card-header">
                             <div class="blood-type-badge type-ab-positive">AB+</div>
@@ -197,12 +228,110 @@
                                     <span class="detail-value">Platelets</span>
                                 </div>
                                 <div class="detail-item">
-                                    <span class="detail-label">Units:</span>
-                                    <span class="detail-value">22 units</span>
+                                    <span class="detail-label">Amount:</span>
+                                    <span class="detail-value">25.5 liters</span>
+                                </div>
+                                <div class="blood-level">
+                                    <div class="blood-bar"></div>
                                 </div>
                                 <div class="detail-item">
                                     <span class="detail-label">Expiry:</span>
                                     <span class="detail-value">Dec 18, 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-primary btn-small">Request</button>
+                            <button class="btn-ghost btn-small">Details</button>
+                        </div>
+                    </div>
+                    <div class="blood-record-card">
+                        <div class="card-header">
+                            <div class="blood-type-badge type-a-positive">A+</div>
+                            <div class="availability-status low-stock">Low Stock</div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="hospital-name">Vinmec Hai Phong Hospital</h3>
+                            <p class="hospital-location">Hai Phong</p>
+                            <div class="blood-details">
+                                <div class="detail-item">
+                                    <span class="detail-label">Product:</span>
+                                    <span class="detail-value">Plasma</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Amount:</span>
+                                    <span class="detail-value">3 liters</span>
+                                </div>
+                                <div class="blood-level">
+                                    <div class="blood-bar"></div>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Expiry:</span>
+                                    <span class="detail-value">Sep 15, 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-primary btn-small">Request</button>
+                            <button class="btn-ghost btn-small">Details</button>
+                        </div>
+                    </div>
+
+                    <div class="blood-record-card">
+                        <div class="card-header">
+                            <div class="blood-type-badge type-b-positive">B+</div>
+                            <div class="availability-status available">Available</div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="hospital-name">Hue Central Hospital</h3>
+                            <p class="hospital-location">Thua Thien Hue</p>
+                            <div class="blood-details">
+                                <div class="detail-item">
+                                    <span class="detail-label">Product:</span>
+                                    <span class="detail-value">Cryoprecipitate</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Amount:</span>
+                                    <span class="detail-value">120 liters</span>
+                                </div>
+                                <div class="blood-level">
+                                    <div class="blood-bar"></div>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Expiry:</span>
+                                    <span class="detail-value">Jan 05, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-primary btn-small">Request</button>
+                            <button class="btn-ghost btn-small">Details</button>
+                        </div>
+                    </div>
+
+                    <div class="blood-record-card">
+                        <div class="card-header">
+                            <div class="blood-type-badge type-o-negative">O-</div>
+                            <div class="availability-status low-stock">Low Stock</div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="hospital-name">Can Tho Central General Hospital</h3>
+                            <p class="hospital-location">Can Tho</p>
+                            <div class="blood-details">
+                                <div class="detail-item">
+                                    <span class="detail-label">Product:</span>
+                                    <span class="detail-value">Red Blood Cells</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Amount:</span>
+                                    <span class="detail-value">750 milliliters</span>
+                                </div>
+                                <div class="blood-level">
+                                    <div class="blood-bar"></div>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Expiry:</span>
+                                    <span class="detail-value">Dec 30, 2024</span>
                                 </div>
                             </div>
                         </div>
@@ -225,7 +354,85 @@
                 </div>
             </div>
         </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const maxLiters = 1000; // Maximum capacity in liters for percentage calculation
+                const cards = document.querySelectorAll(".blood-record-card");
+
+                cards.forEach((card, index) => {
+                    // Find the detail item where label contains "Amount:"
+                    const detailItems = card.querySelectorAll(".detail-item");
+                    let amountEl = null;
+
+                    detailItems.forEach(item => {
+                        const label = item.querySelector(".detail-label");
+                        if (label && label.textContent.toLowerCase().includes("amount")) {
+                            amountEl = item.querySelector(".detail-value");
+                        }
+                    });
+
+                    if (!amountEl) return;
+
+                    let amountText = amountEl.textContent.toLowerCase().trim();
+                    let liters = 0;
+
+                    // Parse the amount text to extract number and convert to liters
+                    const numberMatch = amountText.match(/(\d+(?:\.\d+)?)/);
+                    if (numberMatch) {
+                        const number = parseFloat(numberMatch[1]);
+
+                        if (amountText.includes("milliliter") || amountText.includes("ml")) {
+                            liters = number / 1000; // Convert milliliters to liters
+                        } else if (amountText.includes("liter") || amountText.includes("l")) {
+                            liters = number; // Already in liters
+                        }
+                    }
+
+                    // Calculate percentage (cap at 100%)
+                    const percent = Math.min((liters / maxLiters) * 100, 100);
+                    const bar = card.querySelector(".blood-bar");
+
+                    if (bar) {
+                        // Add staggered delay for animation effect
+                        setTimeout(() => {
+                            bar.style.width = percent + "%";
+
+                            // Add a data attribute to show the actual percentage
+                            bar.setAttribute('data-percentage', Math.round(percent) + '%');
+
+                            // Optional: Add tooltip or percentage display
+                            bar.title = `${liters.toFixed(1)}L (${Math.round(percent)}% of capacity)`;
+                        }, 200 + (index * 100)); // Staggered animation
+                    }
+                });
+
+                // Add click handlers for buttons
+                const requestButtons = document.querySelectorAll('.btn-primary');
+                const detailButtons = document.querySelectorAll('.btn-ghost');
+
+                requestButtons.forEach((btn, index) => {
+                    btn.addEventListener('click', () => {
+                        const card = btn.closest('.blood-record-card');
+                        const hospitalName = card.querySelector('.hospital-name').textContent;
+                        alert(`Request submitted for ${hospitalName}`);
+                    });
+                });
+
+                detailButtons.forEach((btn, index) => {
+                    btn.addEventListener('click', () => {
+                        const card = btn.closest('.blood-record-card');
+                        const hospitalName = card.querySelector('.hospital-name').textContent;
+                        const bloodType = card.querySelector('.blood-type-badge').textContent;
+                        const amount = card.querySelector('.detail-item:nth-child(2) .detail-value').textContent;
+                        const expiry = card.querySelector('.detail-item:last-child .detail-value').textContent;
+
+                        alert(`Details for ${hospitalName}:\nBlood Type: ${bloodType}\nAmount: ${amount}\nExpiry: ${expiry}`);
+                    });
+                });
+            });
+        </script>
     </main>
+    <!-- Footer -->
     <%- include('partials/footer.ejs') %>
 
         <script>

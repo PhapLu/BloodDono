@@ -7,13 +7,6 @@ import userController from './user.controller.js'
 import { checkUserLoggedIn, checkUserActivated } from '../utils/util.js'
 
 class PageController {
-    signUp = async (req, res) => {
-        const user = await checkUserLoggedIn(req.cookies.accessToken);
-        if(user){
-            return res.redirect('/');
-        }
-        res.render('signUp', user);
-    }
 
     signIn = async (req, res) => {
         const mockUser = {

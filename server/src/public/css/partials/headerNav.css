@@ -134,6 +134,7 @@ body {
 }
 
 .btn-primary {
+    text-decoration: none;
     background-color: var(--primary);
     color: var(--primary-foreground);
     border: none;
