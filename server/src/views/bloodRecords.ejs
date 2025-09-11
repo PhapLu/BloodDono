@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BloodDodo - Healthcare Blood Management Platform</title>
+    <meta name="description"
+        content="BloodDodo connects hospitals across Vietnam to life-saving blood donations. Real-time blood tracking, location mapping, and 24/7 availability for healthcare professionals.">
+    <meta name="keywords" content="blood donation, healthcare, hospitals, Vietnam, blood bank, medical, blood tracking">
+    <meta name="author" content="BloodDodo">
+
+    <meta property="og:title" content="BloodDodo - Healthcare Blood Management Platform">
+    <meta property="og:description"
+        content="Connecting hospitals across Vietnam to life-saving blood donations with real-time tracking and location mapping.">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@blooddodo">
+    <link rel="stylesheet" href="/css/bloodRecords.css">
+    <link rel="stylesheet" href="/css/partials/footer.css">
+    <link rel="stylesheet" href="/css/partials/headerNav.css">
+    <!-- <script defer src="all.js"></script> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navigation">
+        <div class="nav-container">
+            <div class="nav-content">
+                <!-- Logo and Brand -->
+                <%- include('partials/headerLogo') %>
+                    <!-- Navigation Links -->
+                    <%- include('partials/headerNav') %>
+            </div>
+        </div>
+    </nav>
+    <!-- Blood Records Page HTML -->
+    <main class="blood-records-main">
+        <div class="page-container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1 class="page-title">Blood Records</h1>
+                <p class="page-description">Search and filter available blood inventory across healthcare facilities</p>
+            </div>
+
+            <!-- Filters Section -->
+            <div class="filters-section">
+                <div class="filters-container">
+                    <h2 class="filters-title">Filter Results</h2>
+
+                    <div class="filters-grid">
+                        <!-- Blood Type Filter -->
+                        <div class="filter-group">
+                            <label class="filter-label">Blood Type</label>
+                            <select class="filter-select">
+                                <option value="">All Blood Types</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                            </select>
+                        </div>
+
+                        <!-- Location Filter -->
+                        <div class="filter-group">
+                            <label class="filter-label">Location</label>
+                            <select class="filter-select">
+                                <option value="">All Locations</option>
+                                <option value="ho-chi-minh">Ho Chi Minh City</option>
+                                <option value="hanoi">Hanoi</option>
+                                <option value="da-nang">Da Nang</option>
+                                <option value="can-tho">Can Tho</option>
+                                <option value="hai-phong">Hai Phong</option>
+                            </select>
+                        </div>
+
+                        <!-- Availability Filter -->
+                        <div class="filter-group">
+                            <label class="filter-label">Availability</label>
+                            <select class="filter-select">
+                                <option value="">All Status</option>
+                                <option value="available">Available</option>
+                                <option value="low-stock">Low Stock</option>
+                                <option value="out-of-stock">Out of Stock</option>
+                            </select>
+                        </div>
+
+                        <!-- Blood Product Filter -->
+                        <div class="filter-group">
+                            <label class="filter-label">Blood Product</label>
+                            <select class="filter-select">
+                                <option value="">All Products</option>
+                                <option value="whole-blood">Whole Blood</option>
+                                <option value="red-blood-cells">Red Blood Cells</option>
+                                <option value="platelets">Platelets</option>
+                                <option value="plasma">Plasma</option>
+                                <option value="cryoprecipitate">Cryoprecipitate</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="filters-actions">
+                        <button class="btn-primary">Apply Filters</button>
+                        <button class="btn-ghost">Clear All</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div class="results-section">
+                <div class="results-header">
+                    <h2 class="results-title">Blood Inventory Results</h2>
+                    <span class="results-count">Showing 24 records</span>
+                </div>
+
+                <div class="blood-records-grid">
+                    <!-- Sample Blood Record Cards -->
+                    <div class="blood-record-card">
+                        <div class="card-header">
+                            <div class="blood-type-badge type-o-positive">O+</div>
+                            <div class="availability-status available">Available</div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="hospital-name">Bach Mai Hospital</h3>
+                            <p class="hospital-location">Hanoi</p>
+                            <div class="blood-details">
+                                <div class="detail-item">
+                                    <span class="detail-label">Product:</span>
+                                    <span class="detail-value">Whole Blood</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Units:</span>
+                                    <span class="detail-value">45 units</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Expiry:</span>
+                                    <span class="detail-value">Dec 25, 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-primary btn-small">Request</button>
+                            <button class="btn-ghost btn-small">Details</button>
+                        </div>
+                    </div>
+
+                    <div class="blood-record-card">
+                        <div class="card-header">
+                            <div class="blood-type-badge type-a-negative">A-</div>
+                            <div class="availability-status low-stock">Low Stock</div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="hospital-name">Cho Ray Hospital</h3>
+                            <p class="hospital-location">Ho Chi Minh City</p>
+                            <div class="blood-details">
+                                <div class="detail-item">
+                                    <span class="detail-label">Product:</span>
+                                    <span class="detail-value">Red Blood Cells</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Units:</span>
+                                    <span class="detail-value">8 units</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Expiry:</span>
+                                    <span class="detail-value">Dec 20, 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-primary btn-small">Request</button>
+                            <button class="btn-ghost btn-small">Details</button>
+                        </div>
+                    </div>
+
+                    <!-- Additional sample cards... -->
+                    <div class="blood-record-card">
+                        <div class="card-header">
+                            <div class="blood-type-badge type-ab-positive">AB+</div>
+                            <div class="availability-status available">Available</div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="hospital-name">Da Nang Hospital</h3>
+                            <p class="hospital-location">Da Nang</p>
+                            <div class="blood-details">
+                                <div class="detail-item">
+                                    <span class="detail-label">Product:</span>
+                                    <span class="detail-value">Platelets</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Units:</span>
+                                    <span class="detail-value">22 units</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Expiry:</span>
+                                    <span class="detail-value">Dec 18, 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-primary btn-small">Request</button>
+                            <button class="btn-ghost btn-small">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="pagination-btn" disabled>Previous</button>
+                    <div class="pagination-numbers">
+                        <button class="pagination-number active">1</button>
+                        <button class="pagination-number">2</button>
+                        <button class="pagination-number">3</button>
+                    </div>
+                    <button class="pagination-btn">Next</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <%- include('partials/footer.ejs') %>
+
+        <script>
+            function scrollToAbout() {
+                document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+            }
+        </script>
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

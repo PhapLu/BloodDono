@@ -15,13 +15,11 @@ class PageController {
         res.render('signUp', user);
     }
 
-    login = async (req, res) => {
-        const user = await checkUserLoggedIn(req.cookies.accessToken);
-        
-        if(user){
-            return res.redirect('/');
+    signIn = async (req, res) => {
+        const mockUser = {
+            name: 'Hello'
         }
-        res.render('login', user);
+        res.render('signIn', mockUser);
     }
     
     landingPage = async (req, res) => {
@@ -30,6 +28,14 @@ class PageController {
         }
         
         res.render('landingPage', mockUser);
+    }
+
+    bloodRecords = async (req, res) => {
+        const mockUser = {
+            name: 'Hello'
+        }
+        
+        res.render('bloodRecords', mockUser);
     }
 }
 

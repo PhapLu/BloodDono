@@ -18,6 +18,8 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@blooddodo">
     <link rel="stylesheet" href="/css/landingPage.css">
+    <link rel="stylesheet" href="/css/partials/footer.css">
+    <link rel="stylesheet" href="/css/partials/headerNav.css">
     <!-- <script defer src="all.js"></script> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,26 +34,9 @@
         <div class="nav-container">
             <div class="nav-content">
                 <!-- Logo and Brand -->
-                <div class="nav-brand">
-                    <img src="/images/logo.png" alt="BloodDodo Logo" class="logo">
-                    <div>
-                        <h1 class="brand-title">BloodDoDo</h1>
-                        <p class="brand-subtitle">Healthcare Blood Management</p>
-                    </div>
-                </div>
-
+                <%- include('partials/headerLogo') %>
                 <!-- Navigation Links -->
-                <div class="nav-links">
-                    <a href="#about" class="nav-link">About us</a>
-                    <a href="#records" class="nav-link">Blood Records</a>
-                    <a href="#contact" class="nav-link">Contact</a>
-                </div>
-
-                <!-- Auth Buttons -->
-                <div class="nav-buttons">
-                    <button class="btn-ghost">Sign in</button>
-                    <button class="btn-primary">Sign up</button>
-                </div>
+                <%- include('partials/headerNav') %>
             </div>
         </div>
     </nav>
@@ -104,7 +89,7 @@
     <section id="about" class="features-section">
         <div class="features-container">
             <div class="features-header">
-                <h2 class="features-title">Why Choose BloodDodo?</h2>
+                <h2 class="features-title">Why Choose BloodDoDo?</h2>
                 <p class="features-subtitle">
                     Our platform provides hospitals with the tools they need to efficiently manage
                     blood inventory and save lives across Vietnam.
@@ -331,7 +316,7 @@
                         <h3 class="article-title">Success Story: Reducing Emergency Response Time by 40%</h3>
 
                         <p class="article-excerpt">
-                            How Hospital Bach Mai improved their emergency blood supply response using BloodDodo's
+                            How Hospital Bach Mai improved their emergency blood supply response using BloodDoDo's
                             real-time tracking system.
                         </p>
 
@@ -354,96 +339,7 @@
     </section>
 
     <!-- Footer -->
-    <footer id="contact" class="footer">
-        <div class="footer-container">
-            <div class="footer-grid">
-                <!-- Brand -->
-                <div class="footer-brand">
-                    <div class="footer-logo">
-                        <img src="/images/logo.png" alt="BloodDodo Logo" class="logo">
-                        <div>
-                            <h3 class="footer-title">BloodDoDo</h3>
-                            <p class="footer-subtitle">Healthcare Blood Management</p>
-                        </div>
-                    </div>
-                    <p class="footer-description">
-                        Connecting hospitals across Vietnam to life-saving blood donations.
-                        Our platform ensures critical medical supplies reach where they're needed most,
-                        24 hours a day, 7 days a week.
-                    </p>
-                    <div class="footer-tagline">
-                        <svg class="heart-icon" viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
-                            </path>
-                        </svg>
-                        <span>Saving lives through technology</span>
-                    </div>
-                </div>
-
-                <!-- Quick Links -->
-                <div class="footer-links">
-                    <h4 class="footer-heading">Quick Links</h4>
-                    <ul class="footer-list">
-                        <li><a href="#about" class="footer-link">About us</a></li>
-                        <li><a href="#records" class="footer-link">Blood Records</a></li>
-                        <li><a href="#features" class="footer-link">Features</a></li>
-                        <li><a href="#articles" class="footer-link">Articles</a></li>
-                        <li><a href="#contact" class="footer-link">Contact</a></li>
-                    </ul>
-                </div>
-
-                <!-- Contact Info -->
-                <div class="footer-contact">
-                    <h4 class="footer-heading">Contact</h4>
-                    <div class="contact-list">
-                        <div class="contact-item">
-                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                <circle cx="12" cy="10" r="3"></circle>
-                            </svg>
-                            <div class="contact-text">
-                                <p>Ho Chi Minh City</p>
-                                <p>Vietnam</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path
-                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
-                                </path>
-                            </svg>
-                            <span class="contact-text">+84 (0) 123 456 789</span>
-                        </div>
-                        <div class="contact-item">
-                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
-                                </path>
-                                <polyline points="22,6 12,13 2,6"></polyline>
-                            </svg>
-                            <span class="contact-text">support@blooddodo.vn</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <hr class="footer-divider">
-
-            <div class="footer-bottom">
-                <p class="footer-copyright">
-                    © 2024 BloodDoDo. All rights reserved. | Healthcare Blood Management Platform
-                </p>
-                <div class="footer-legal">
-                    <a href="#" class="legal-link">Privacy Policy</a>
-                    <a href="#" class="legal-link">Terms of Service</a>
-                    <a href="#" class="legal-link">HIPAA Compliance</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <%- include('partials/footer.ejs') %>
 
     <script>
         function scrollToAbout() {
