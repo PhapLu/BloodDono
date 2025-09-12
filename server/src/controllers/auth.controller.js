@@ -8,6 +8,7 @@ import jwt from 'jsonwebtoken';
 import role from '../middlewares/rbac.middleware.js';
 import { BadRequestError, NotFoundError } from '../core/error.response.js';
 import brevoSendEmail from '../configs/brevo.config.js';
+import { User } from '../models/user.model.js';
 
 class AuthController {
     signUp = async (req, res) => {
@@ -187,7 +188,7 @@ class AuthController {
             });
     
             // Send a successful logout response
-            return res.status(200).json({ message: 'Logout successful' });
+            return res.redirect('/page/landingPage');
         } catch (error) {
             console.error(error);
             return res.status(500).json({ message: 'Logout failed' });

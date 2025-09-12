@@ -14,7 +14,7 @@ import bodyParser from 'body-parser'
 import session from 'express-session'
 import compression from 'compression'
 import cookieParser from 'cookie-parser'
-// import './configs/passport.config.js'
+import './configs/passport.config.js'
 import router from './routes/index.js'
 import SocketServices from './controllers/socket.service.js';
 import sanitizeInputs from './middlewares/sanitize.middleware.js'

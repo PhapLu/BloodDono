@@ -1,116 +1,46 @@
 import mongoose from "mongoose";
-const { Schema } = mongoose;
+const Schema = mongoose.Schema;
 
 const DOCUMENT_NAME = "User";
 const COLLECTION_NAME = "Users";
 
-const CustomerProfileSchema = new Schema(
-    {
-        name: { type: String, trim: true },
-        address: { type: String, trim: true },
-    },
-    { _id: false }
-);
-
-const VendorProfileSchema = new Schema(
-    {
-        businessName: { type: String, required: true, trim: true },
-        businessAddress: { type: String, required: true, trim: true },
-    },
-    { _id: false }
-);
-
-const ShipperProfileSchema = new Schema(
-    {
-        assignedHub: {
-            type: Schema.Types.ObjectId,
-            ref: "DistributionHub",
-            required: true,
-        },
-    },
-    { _id: false }
-);
-
 const UserSchema = new Schema(
     {
-        username: {
-            type: String,
-            required: true,
-            unique: true,
-            trim: true,
-        },
-        password: { type: String, required: true },
+        googleId: { type: String, default: "" },
+        fullName: { type: String, required: true, trim: true },
+        email: { type: String, required: true, trim: true, unique: true },
+        password: { type: String, default: "" },
         role: {
             type: String,
-            enum: ["customer", "vendor", "shipper", "admin"],
-            required: true,
-            index: true,
+            enum: ["member", "talent", "admin"],
+            default: "member",
         },
+        gender: { type: String, enum: ["male", "female", "other"], trim: true },
         avatar: {
             type: String,
-            required: true,
-            default: "/uploads/avatars/default-avatar.png",
+            default: "/images/systems/default-avatar.png",
         },
-        email: { type: String, trim: true, lowercase: true },
         phone: { type: String },
+        address: { type: String, default: "" },
         country: { type: String, default: "Vietnam" },
-        bio: {
+        dob: { type: Date, default: null },
+        status: {
             type: String,
-            default: "",
-            maxlength: [200, "Bio cannot exceed 200 characters"],
+            default: "pending",
+            enum: ["pending", "active", "block"],
         },
-        customerProfile: {
-            type: CustomerProfileSchema,
-            required: function () {
-                return this.role === "customer";
-            },
-        },
-        vendorProfile: {
-            type: VendorProfileSchema,
-            required: function () {
-                return this.role === "vendor";
-            },
-        },
-        shipperProfile: {
-            type: ShipperProfileSchema,
-            required: function () {
-                return this.role === "shipper";
-            },
-        },
+        accessToken: { type: String, default: "" },
     },
-    { timestamps: true, collection: COLLECTION_NAME }
-);
-
-UserSchema.index({
-    "customerProfile.name": "text",
-    email: "text",
-    bio: "text",
-});
-
-UserSchema.index(
-    { "vendorProfile.businessName": 1 },
     {
-        unique: true,
-        partialFilterExpression: {
-            role: "vendor",
-            "vendorProfile.businessName": { $type: "string" },
-        },
-        collation: { locale: "en", strength: 2 }, // optional but recommended
+        timestamps: true,
+        collection: COLLECTION_NAME,
     }
 );
 
-// 4) Vendor-only unique businessAddress (partial unique + case-insensitive)
-UserSchema.index(
-    { "vendorProfile.businessAddress": 1 },
-    {
-        unique: true,
-        partialFilterExpression: {
-            role: "vendor",
-            "vendorProfile.businessAddress": { $type: "string" },
-        },
-        collation: { locale: "en", strength: 2 }, // optional but recommended
-    }
-);
+UserSchema.index({ domainName: 1 });
+UserSchema.index({ email: 1 });
+UserSchema.index({ "comments.userId": 1, "comments.createdAt": -1 });
 
 const User = mongoose.model(DOCUMENT_NAME, UserSchema);
-export default User;
+
+export { User};

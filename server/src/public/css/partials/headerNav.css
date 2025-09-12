@@ -150,3 +150,92 @@ body {
 .btn-primary:hover {
     background-color: var(--primary-dark);
 }
+
+/* User menu when logged in */
+.user-menu {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary);
+}
+
+.user-name {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--primary-dark);
+}
+
+.user-menu {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+.user-menu .dropdown {
+    display: none;
+    position: absolute;
+    top: 110%;   /* no gap */
+    right: 0;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    min-width: 180px;
+    box-shadow: var(--shadow-card);
+    z-index: 1000;
+}
+
+.user-menu .dropdown::before {
+    content: "";
+    position: absolute;
+    top: -8px;   /* height of your gap */
+    left: 0;
+    right: 0;
+    height: 10px; /* same as the margin you wanted */
+}
+
+.user-menu .dropdown a {
+    display: block;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: var(--primary-dark);
+    font-size: 0.95rem;
+    transition: var(--transition-smooth);
+}
+
+.user-menu .dropdown a:hover {
+    background-color: var(--muted);
+}
+
+/* Show dropdown on hover */
+
+.user-menu:hover .dropdown,
+.user-menu .dropdown:hover {
+    display: block;
+}
+
+.dropdown-link {
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    color: var(--primary-dark);
+    cursor: pointer;
+    font-family: inherit; /* match site font */
+}
+
+.dropdown-link:hover {
+    background-color: var(--muted);
+}
+
+

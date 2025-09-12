@@ -1,6 +1,6 @@
 import passport from "passport"
 import { Strategy as GoogleStrategy } from "passport-google-oauth20"
-import User from "../models/user.model.js"
+import {User} from "../models/user.model.js"
 import axios from "axios"
 import { generateToken } from "../utils/token.util.js"
 import dotenv from 'dotenv'
@@ -14,9 +14,7 @@ passport.use(
         {
             clientID: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-            callbackURL: process.env.NODE_ENV === 'production'
-            ? 'https://group-project-cosc3060-cosc3061-2024b-4-tgkf.onrender.com/auth/google/callback'  // Production URI
-            : 'http://localhost:3000/auth/google/callback'    // Local URI
+            callbackURL: 'http://localhost:3000/auth/google/callback'
         },
         async (accessToken, refreshToken, profile, done) => {
             try {
@@ -28,12 +26,12 @@ passport.use(
                         fullName: profile.displayName,
                         email: profile.emails[0].value,
                         password: "",
-                        accessToken: accessToken,
                     })
                 }
                 const jwtToken = generateToken(user)
-                user.accessToken = jwtToken
+                console.log(jwtToken)
                 user.isActive = true
+                user.accessToken = jwtToken
                 await user.save()
 
                 return done(null, user)

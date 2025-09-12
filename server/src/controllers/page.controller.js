@@ -1,7 +1,6 @@
 import dotenv from 'dotenv'
 dotenv.config()
-import jwt from 'jsonwebtoken'
-import User from '../models/user.model.js'
+import {User} from '../models/user.model.js'
 import { BadRequestError } from '../core/error.response.js'
 import userController from './user.controller.js'
 import { checkUserLoggedIn, checkUserActivated } from '../utils/util.js'
@@ -16,19 +15,28 @@ class PageController {
     }
     
     landingPage = async (req, res) => {
-        const mockUser = {
-            name: 'Hello'
-        }
-        
-        res.render('landingPage', mockUser);
+        const accessToken = req.cookies.accessToken; // Assuming you store the accessToken in cookies
+        const user = await checkUserLoggedIn(accessToken);
+        const mockData = {
+            totalCustomers: 1000,
+            yearsExperience: 10,
+            totalDestinations: 50,
+            averageRating: 4.5,
+            popularDestinations: [
+                { name: 'Hanoi', image: '/images/hanoi.jpg' },
+                { name: 'Ho Chi Minh City', image: '/images/hcmc.jpg' },
+                { name: 'Da Nang', image: '/images/danang.jpg' },
+            ],
+            user: user || null // <— always defined (null or object)
+        };
+        res.render('landingPage', mockData);
     }
 
     bloodRecords = async (req, res) => {
-        const mockUser = {
-            name: 'Hello'
-        }
-        
-        res.render('bloodRecords', mockUser);
+        const accessToken = req.cookies.accessToken; // Assuming you store the accessToken in cookies
+        const user = await checkUserLoggedIn(accessToken);
+        console.log(user)
+        res.render("bloodRecords", { user: user || null });
     }
 }
 
