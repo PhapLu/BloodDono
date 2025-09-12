@@ -1,9 +1,0 @@
-# env
-.env
-.env.*
-server/.env
-server/.env.*
-# common
-node_modules/
-dist/
-build/
