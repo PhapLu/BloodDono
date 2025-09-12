@@ -1,0 +1,396 @@
+/* Blood Records Page CSS */
+
+/* Inherit base styles and variables from existing navigation CSS */
+/* Using the same color system and variables */
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: hsl(213, 31%, 91%);
+    background-color: hsl(0, 0%, 100%);
+}
+
+/* Healthcare Color Variables */
+:root {
+    --primary: hsl(217, 91%, 60%);
+    --primary-light: hsl(217, 91%, 70%);
+    --primary-dark: hsl(217, 91%, 50%);
+    --primary-foreground: hsl(0, 0%, 100%);
+
+    --background: hsl(0, 0%, 100%);
+    --foreground: hsl(213, 31%, 91%);
+    --card: hsl(0, 0%, 100%);
+    --muted: hsl(217, 32%, 96%);
+    --muted-foreground: hsl(215, 20%, 65%);
+    --border: hsl(217, 32%, 89%);
+
+    --gradient-hero: linear-gradient(135deg, hsl(217, 91%, 60%, 0.1), hsl(217, 91%, 70%, 0.05));
+    --shadow-card: 0 2px 10px hsl(217, 32%, 89%, 0.5);
+    --shadow-button: 0 2px 8px hsl(217, 91%, 60%, 0.25);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.blood-records-main {
+    min-height: 100vh;
+    background: var(--gradient-hero);
+    padding: 2rem 0;
+}
+
+.page-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Page Header */
+.page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.page-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.page-description {
+    font-size: 1.25rem;
+    color: var(--muted-foreground);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Filters Section */
+.filters-section {
+    margin-bottom: 3rem;
+}
+
+.filters-container {
+    background: var(--card);
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border);
+}
+
+.filters-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: indianred;
+    margin-bottom: 1.5rem;
+}
+
+.filters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.filter-label {
+    font-size: 1rem;
+    font-weight: 900;
+    color: var(--primary-light);
+}
+
+.filter-label:hover {
+    color: var(--primary-dark)
+}
+
+.filter-select {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    background: var(--background);
+    color: var(--primary);
+    font-size: 1rem;
+    transition: var(--transition-smooth);
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px hsla(217, 91%, 60%, 0.1);
+    color: var(--primary-dark);
+}
+
+.filters-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.btn-small {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}
+
+/* Results Section */
+.results-section {
+    background: var(--card);
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border);
+}
+
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.results-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: indianred;
+}
+
+.results-count {
+    color: var(--muted-foreground);
+    font-size: 1rem;
+}
+
+/* Blood Records Grid */
+.blood-records-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.blood-record-card {
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    transition: var(--transition-smooth);
+    box-shadow: 0 1px 3px hsla(217, 32%, 89%, 0.3);
+}
+
+.blood-record-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.blood-type-badge {
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--primary-foreground);
+}
+
+.type-o-positive,
+.type-o-negative {
+    background-color: hsl(0, 84%, 60%);
+}
+
+.type-a-positive,
+.type-a-negative {
+    background-color: hsl(142, 71%, 45%);
+}
+
+.type-b-positive,
+.type-b-negative {
+    background-color: hsl(262, 83%, 58%);
+}
+
+.type-ab-positive,
+.type-ab-negative {
+    background-color: hsl(32, 95%, 44%);
+}
+
+.availability-status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.availability-status.available {
+    background-color: hsla(142, 71%, 45%, 0.1);
+    color: hsl(142, 71%, 35%);
+}
+
+.availability-status.low-stock {
+    background-color: hsla(32, 95%, 44%, 0.1);
+    color: hsl(32, 95%, 34%);
+}
+
+.availability-status.out-of-stock {
+    background-color: hsla(0, 84%, 60%, 0.1);
+    color: hsl(0, 84%, 50%);
+}
+
+.card-content {
+    margin-bottom: 1.5rem;
+}
+
+.hospital-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.25rem;
+}
+
+.hospital-location {
+    color: var(--muted-foreground);
+    margin-bottom: 1rem;
+}
+
+.blood-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.detail-label {
+    color: var(--muted-foreground);
+    font-weight: 500;
+}
+
+.detail-value {
+    color: black;
+    font-weight: 600;
+}
+
+.card-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.pagination-btn {
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--border);
+    background: var(--background);
+    color: var(--primary);
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.pagination-btn:hover:not(:disabled) {
+    background: var(--primary);
+    color: var(--primary-foreground);
+}
+
+.pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination-numbers {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.pagination-number {
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid var(--border);
+    background: var(--background);
+    color: var(--primary);
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.pagination-number.active {
+    background: var(--primary);
+    color: var(--primary-foreground);
+}
+
+.pagination-number:hover:not(.active) {
+    background: var(--muted);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 2rem;
+    }
+
+    .filters-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .filters-actions {
+        flex-direction: column;
+    }
+
+    .blood-records-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .results-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .pagination {
+        flex-wrap: wrap;
+    }
+}
+
+.blood-level {
+    background: #eee;
+    border-radius: 8px;
+    height: 18px;
+    width: 100%;
+    margin: 8px 0;
+    overflow: hidden;
+}
+
+/* The filling red bar */
+.blood-bar {
+    background: linear-gradient(90deg, #ff4d4d, #cc0000);
+    height: 100%;
+    width: 0%;
+    /* JS will update */
+    transition: width 0.6s ease-in-out;
+}

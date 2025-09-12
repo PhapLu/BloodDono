@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BloodDodo - Healthcare Blood Management Platform</title>
+    <meta name="description"
+        content="BloodDodo connects hospitals across Vietnam to life-saving blood donations. Real-time blood tracking, location mapping, and 24/7 availability for healthcare professionals.">
+    <meta name="keywords" content="blood donation, healthcare, hospitals, Vietnam, blood bank, medical, blood tracking">
+    <meta name="author" content="BloodDodo">
+
+    <meta property="og:title" content="BloodDodo - Healthcare Blood Management Platform">
+    <meta property="og:description"
+        content="Connecting hospitals across Vietnam to life-saving blood donations with real-time tracking and location mapping.">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@blooddodo">
+    <link rel="stylesheet" href="/css/landingPage.css">
+    <link rel="stylesheet" href="/css/partials/footer.css">
+    <link rel="stylesheet" href="/css/partials/headerNav.css">
+    <!-- <script defer src="all.js"></script> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navigation">
+        <div class="nav-container">
+            <div class="nav-content">
+                <!-- Logo and Brand -->
+                <%- include('partials/headerLogo') %>
+                <!-- Navigation Links -->
+                <%- include('partials/headerNav', { user: user }) %>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-container">
+            <div class="hero-grid">
+                <!-- Content -->
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="hero-title">
+                            Connecting Hospitals to
+                            <span class="hero-highlight">Life-Saving Blood</span>
+                        </h1>
+
+                        <div class="about-card">
+                            <h2 class="about-title">About Us</h2>
+                            <p class="about-text">
+                                BloodDodo revolutionizes blood donation management for hospitals across Vietnam.
+                                Our platform provides real-time access to blood type availability and location data,
+                                ensuring critical medical supplies reach where they're needed most.
+                            </p>
+                        </div>
+
+                        <div class="hero-buttons">
+                            <button class="btn-learn-more" onclick="scrollToAbout()">Learn more...</button>
+                            <a href="/page/bloodRecords" class="btn-outline-large">View Blood Records</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Image -->
+                <div class="hero-image-container">
+                    <div class="hero-image-wrapper">
+                        <img src="/images/front.png" alt="Blood donation center" class="hero-image">
+                    </div>
+                    <div class="hero-badge">
+                        <div class="badge-content">
+                            <div class="badge-number">24/7</div>
+                            <div class="badge-text">Available</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="about" class="features-section">
+        <div class="features-container">
+            <div class="features-header">
+                <h2 class="features-title">Why Choose BloodDoDo?</h2>
+                <p class="features-subtitle">
+                    Our platform provides hospitals with the tools they need to efficiently manage
+                    blood inventory and save lives across Vietnam.
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Real-time Blood Tracking</h3>
+                    <p class="feature-description">Monitor blood type availability across Vietnam's hospital network
+                        instantly</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Location Mapping</h3>
+                    <p class="feature-description">Find the nearest blood banks and donation centers with precise
+                        locations</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12,6 12,12 16,14"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">24/7 Availability</h3>
+                    <p class="feature-description">Access critical blood data anytime, anywhere for emergency situations
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Secure & Compliant</h3>
+                    <p class="feature-description">HIPAA-compliant platform ensuring patient privacy and data security
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Hospital Network</h3>
+                    <p class="feature-description">Connected to major hospitals and medical facilities nationwide</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 3v5h5"></path>
+                            <path d="M6 17l4-4 4 4 4-4"></path>
+                            <path d="M18 3v5h5"></path>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Analytics Dashboard</h3>
+                    <p class="feature-description">Comprehensive insights and reporting for blood inventory management
+                    </p>
+                </div>
+            </div>
+
+            <div class="stats-section">
+                <div class="stats-card">
+                    <h3 class="stats-title">Serving Vietnam's Healthcare System</h3>
+                    <p class="stats-description">
+                        From Ho Chi Minh City to Hanoi, our platform connects hospitals
+                        nationwide to ensure no patient waits for life-saving blood transfusions.
+                    </p>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number">150+</div>
+                            <div class="stat-label">Partner Hospitals</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">63</div>
+                            <div class="stat-label">Provinces Covered</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Support Available</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Articles Section -->
+    <section class="articles-section">
+        <div class="articles-container">
+            <div class="articles-header">
+                <div class="articles-title-wrapper">
+                    <h2 class="articles-title">Latest Healthcare Insights</h2>
+                </div>
+                <p class="articles-subtitle">
+                    Stay updated with the latest developments in blood donation management
+                    and healthcare technology across Vietnam.
+                </p>
+            </div>
+
+            <div class="articles-grid">
+                <article class="article-card">
+                    <div class="article-image">
+                        <img src="/images/article1.png" alt="Blood shortage crisis in Vietnam hospitals"
+                            class="article-thumbnail">
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <svg class="calendar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                            <span>September 5, 2024</span>
+                            <span>•</span>
+                            <span>5 min read</span>
+                        </div>
+
+                        <div class="article-category">Healthcare Technology</div>
+
+                        <h3 class="article-title">Blood Shortage Crisis: How Technology is Making a Difference</h3>
+
+                        <p class="article-excerpt">
+                            Learn how digital platforms are revolutionizing blood bank management and reducing critical
+                            shortages in Vietnamese hospitals.
+                        </p>
+
+                        <a href="https://www.medpagetoday.com/opinion/second-opinions/113675" class="article-read-more" target="_blank" rel="noopener">
+                            Read more
+                            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12,5 19,12 12,19"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-image">
+                        <div class="article-image">
+                            <img src="/images/article2.png" alt="Blood shortage crisis in Vietnam hospitals"
+                                class="article-thumbnail">
+                        </div>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <svg class="calendar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                            <span>August 28, 2024</span>
+                            <span>•</span>
+                            <span>8 min read</span>
+                        </div>
+
+                        <div class="article-category">Medical Guidelines</div>
+
+                        <h3 class="article-title">New Blood Collection Guidelines for Hospital Networks</h3>
+
+                        <p class="article-excerpt">
+                            Updated protocols and best practices for blood collection and storage in compliance with
+                            Vietnam's healthcare standards.
+                        </p>
+
+                        <a href="https://www.annlabmed.org/journal/view.html?doi=10.3343/alm.2025.0022" class="article-read-more" target="_blank" rel="noopener">
+                            Read more
+                            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12,5 19,12 12,19"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-image">
+                        <div class="article-image">
+                            <img src="/images/article3.png" alt="Blood shortage crisis in Vietnam hospitals"
+                                class="article-thumbnail">
+                        </div>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <svg class="calendar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                            <span>August 15, 2024</span>
+                            <span> • </span>
+                            <span>6 min read</span>
+                        </div>
+
+                        <div class="article-category">Case Study</div>
+
+                        <h3 class="article-title">Success Story: Reducing Emergency Response Time by 40%</h3>
+
+                        <p class="article-excerpt">
+                            How Hospital Bach Mai improved their emergency blood supply response using BloodDoDo's
+                            real-time tracking system.
+                        </p>
+
+                        <a href="https://icma.org/success-stories/manager-champions-new-ems-structure" class="article-read-more" target="_blank" rel="noopener">
+                            Read more
+                            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12,5 19,12 12,19"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="articles-cta">
+                <button class="btn-outline-large">View All Articles</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <%- include('partials/footer.ejs') %>
+
+    <script>
+        function scrollToAbout() {
+            document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

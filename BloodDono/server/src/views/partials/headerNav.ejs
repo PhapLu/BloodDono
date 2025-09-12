@@ -1,0 +1,28 @@
+<head>
+    <link rel="stylesheet" href="/public/css/partials/headerNav.css">
+</head>
+<div class="nav-links">
+    <a href="/page/landingPage" class="nav-link">About us</a>
+    <a href="/page/bloodRecords" class="nav-link">Blood Records</a>
+    <a href="#contact" class="nav-link">Contact</a>
+</div>
+
+<!-- Auth/User Section -->
+<div class="nav-buttons">
+    <% if (user) { %>
+        <div class="user-menu">
+            <img src="<%= user.avatar || '/images/default-avatar.png' %>" 
+                 alt="Avatar" class="user-avatar">
+            <span class="user-name"><%= user.fullName || user.email %></span>
+            <div class="dropdown">
+                <a href="/profile">Profile</a>
+                <form action="/auth/logout" method="POST" style="margin:0;">
+                    <button type="submit" class="dropdown-link">Logout</button>
+                </form>
+            </div>
+        </div>
+    <% } else { %>
+        <a href="/page/signIn" class="btn-ghost">Sign in</a>
+        <a href="/page/signUp" class="btn-primary">Sign up</a>
+    <% } %>
+</div>
