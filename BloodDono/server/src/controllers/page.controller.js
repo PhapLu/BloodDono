@@ -1,6 +1,6 @@
 import dotenv from 'dotenv'
 dotenv.config()
-import {User} from '../models/user.model.js'
+import { User } from '../models/user.model.js'
 import { BadRequestError } from '../core/error.response.js'
 import userController from './user.controller.js'
 import { checkUserLoggedIn, checkUserActivated } from '../utils/util.js'
@@ -13,7 +13,6 @@ class PageController {
         }
         res.render('signIn', mockUser);
     }
-    
     landingPage = async (req, res) => {
         const accessToken = req.cookies.accessToken; // Assuming you store the accessToken in cookies
         const user = await checkUserLoggedIn(accessToken);
@@ -37,6 +36,18 @@ class PageController {
         const user = await checkUserLoggedIn(accessToken);
         console.log(user)
         res.render("bloodRecords", { user: user || null });
+    }
+    sendRequest = async (req, res) => {
+        const accessToken = req.cookies.accessToken; // Assuming you store the accessToken in cookies
+        const user = await checkUserLoggedIn(accessToken);
+        console.log(user)
+        res.render("sendRequest", { user: user || null });
+    }
+    confirm = async (req, res) => {
+        const accessToken = req.cookies.accessToken; // Assuming you store the accessToken in cookies
+        const user = await checkUserLoggedIn(accessToken);
+        console.log(user)
+        res.render("confirm", { user: user || null });
     }
 }
 

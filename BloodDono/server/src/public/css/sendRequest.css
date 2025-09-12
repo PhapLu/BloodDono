@@ -1,0 +1,144 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: hsl(213, 31%, 91%);
+    background-color: hsl(0, 0%, 100%);
+}
+
+/* Healthcare Color Variables */
+:root {
+    --primary: hsl(217, 91%, 60%);
+    --primary-light: hsl(217, 91%, 70%);
+    --primary-dark: hsl(217, 91%, 50%);
+    --primary-foreground: hsl(0, 0%, 100%);
+
+    --background: hsl(0, 0%, 100%);
+    --foreground: hsl(213, 31%, 91%);
+    --card: hsl(0, 0%, 100%);
+    --muted: hsl(217, 32%, 96%);
+    --muted-foreground: hsl(215, 20%, 65%);
+    --border: hsl(217, 32%, 89%);
+
+    --gradient-hero: linear-gradient(135deg, hsl(217, 91%, 60%, 0.1), hsl(217, 91%, 70%, 0.05));
+    --shadow-card: 0 2px 10px hsl(217, 32%, 89%, 0.5);
+    --shadow-button: 0 2px 8px hsl(217, 91%, 60%, 0.25);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+.blood-request-form {
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--card);
+    border-radius: 8px;
+    box-shadow: var(--shadow-card);
+    background: var(--gradient-hero);
+}
+
+.form-title {
+    color: var(--primary);
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 3rem;
+    text-align: center;
+
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    font-size: 0.875rem;
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--background);
+    color: black;
+    font-size: 0.875rem;
+    transition: var(--transition-smooth);
+    font-family: inherit;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px hsl(217, 91%, 70%, 0.2);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn {
+    flex: 1;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    border: none;
+    font-family: inherit;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: var(--primary-foreground);
+    box-shadow: var(--shadow-button);
+    text-align: center;
+    text-decoration: none;
+    margin-bottom: 15px;    
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: var(--muted);
+    color: var(--muted-foreground);
+    border: 1px solid var(--border);
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.btn-secondary:hover {
+    background: var(--border);
+    color: var(--primary-dark);
+}
+
+.btn:active {
+    transform: translateY(0);
+}

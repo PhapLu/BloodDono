@@ -8,5 +8,7 @@ const router = express.Router()
 router.get('/signIn', asyncHandler(pageController.signIn))
 router.get('/landingPage', asyncHandler(pageController.landingPage))
 router.get('/bloodRecords', asyncHandler(pageController.bloodRecords))
+router.get('/sendRequest', asyncHandler(pageController.sendRequest))
+router.get('/confirm', asyncHandler(pageController.confirm))
 
 export default router
