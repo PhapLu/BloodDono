@@ -189,84 +189,102 @@
                     </form>
                 </div>
 
-                <!-- Results Section -->
+                                <!-- Results Section -->
                 <div class="results-section">
                     <div class="results-header">
                         <h2 class="results-title">Blood Inventory Results</h2>
-                        <span class="results-count">Showing 6 records</span>
+                        <span class="results-count">Showing 1421 records</span>
                     </div>
 
                     <div class="blood-records-grid">
-                        <% if (results && results.length > 0) { %> <%
-                        results.forEach(stock => { %> <%
-                        stock.inventory.forEach(item => { %>
-                        <div class="blood-record-card">
-                            <% 
-                                function bloodTypeClass(bt) {
-                                    switch (bt) {
-                                    case "A+": return "type-a-positive";
-                                    case "A-": return "type-a-negative";
-                                    case "B+": return "type-b-positive";
-                                    case "B-": return "type-b-negative";
-                                    case "AB+": return "type-ab-positive";
-                                    case "AB-": return "type-ab-negative";
-                                    case "O+": return "type-o-positive";
-                                    case "O-": return "type-o-negative";
-                                    default: return "";
+                        <% if (Object.keys(filters || {}).length > 0 && results && results.length > 0) { %>
+                        <table class="blood-records-table">
+                            <thead>
+                                <tr>
+                                    <th>Blood Type & Status</th>
+                                    <th>Hospital Information</th>
+                                    <th>Blood Details</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% results.forEach(stock => { %>
+                                <% stock.inventory.forEach(item => { %>
+                                <tr class="blood-record-card">
+                                    <% 
+                                    function bloodTypeClass(bt) {
+                                        switch (bt) {
+                                        case "A+": return "type-a-positive";
+                                        case "A-": return "type-a-negative";
+                                        case "B+": return "type-b-positive";
+                                        case "B-": return "type-b-negative";
+                                        case "AB+": return "type-ab-positive";
+                                        case "AB-": return "type-ab-negative";
+                                        case "O+": return "type-o-positive";
+                                        case "O-": return "type-o-negative";
+                                        default: return "";
+                                        }
                                     }
-                                }
-                                %>
-
-                                <div class="card-header">
-                                <div class="blood-type-badge <%= bloodTypeClass(item.bloodType) %>">
-                                    <%= item.bloodType %>
-                                </div>
-
-                                <div class="availability-status <%= item.status.toLowerCase().replace(/\s+/g, '-') %>">
-                                    <%= item.status %>
-                                </div>
-                            </div>
-
-                            <div class="card-content">
-                                <h3 class="hospital-name">
-                                    <%= stock.hospitalId?.name %>
-                                </h3>
-                                <p class="hospital-location">
-                                    <%= stock.hospitalId?.city %>, <%=
-                                    stock.hospitalId?.region %>
-                                </p>
-                                <div class="blood-details">
-                                    <div class="detail-item">
-                                        <span class="detail-label">Blood Type:</span>
-                                        <span class="detail-value"><%= item.bloodType %></span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <span class="detail-label"
-                                            >Amount:</span
-                                        >
-                                        <span class="detail-value"
-                                            ><%= item.quantity %> <%= item.unit
-                                            %></span
-                                        >
-                                    </div>
-                                    <div class="detail-item">
-                                        <span class="detail-label"
-                                            >Expiry:</span
-                                        >
-                                        <span class="detail-value"
-                                            ><%= item.expiryDate ? new
-                                            Date(item.expiryDate).toDateString()
-                                            : 'N/A' %></span
-                                        >
-                                    </div>
-                                </div>
-                                <div class="card-actions">
-                                    <button type="button" class="btn-primary btn-request">Send Request</button>
-                                    <button type="button" class="btn-ghost btn-details">Details</button>
-                                </div>
-                            </div>
-                        </div>
-                        <% }) %> <% }) %> <% } else { %>
+                                    %>
+                                    
+                                    <td>
+                                        <div class="card-header">
+                                            <div class="blood-type-badge <%= bloodTypeClass(item.bloodType) %>">
+                                                <%= item.bloodType %>
+                                            </div>
+                                            <div class="availability-status <%= item.status.toLowerCase().replace(/\s+/g, '-') %>">
+                                                <%= item.status %>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    
+                                    <td>
+                                        <div class="card-content">
+                                            <h3 class="hospital-name">
+                                                <%= stock.hospitalId?.name %>
+                                            </h3>
+                                            <p class="hospital-location">
+                                                <%= stock.hospitalId?.city %>, <%=
+                                                stock.hospitalId?.region %>
+                                            </p>
+                                        </div>
+                                    </td>
+                                    
+                                    <td>
+                                        <div class="blood-details">
+                                            <div class="detail-item">
+                                                <span class="detail-label">Blood Type:</span>
+                                                <span class="detail-value"><%= item.bloodType %></span>
+                                            </div>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Amount:</span>
+                                                <span class="detail-value">
+                                                    <%= item.quantity %> <%= item.unit %>
+                                                </span>
+                                            </div>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Expiry:</span>
+                                                <span class="detail-value">
+                                                    <%= item.expiryDate ? new
+                                                    Date(item.expiryDate).toDateString()
+                                                    : 'N/A' %>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    
+                                    <td>
+                                        <div class="card-actions">
+                                            <button type="button" class="btn-primary btn-request">Send Request</button>
+                                            <button type="button" class="btn-ghost btn-details">Details</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                        <% } else { %>
                         <p style="color: black;">No blood stock found for selected filters.</p>
                         <% } %>
                     </div>
