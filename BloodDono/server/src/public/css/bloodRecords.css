@@ -396,3 +396,9 @@ body {
     /* JS will update */
     transition: width 0.6s ease-in-out;
 }
+
+.btn-request, .btn-details {
+    position: relative;
+    z-index: 9999;
+    pointer-events: auto !important;
+  }

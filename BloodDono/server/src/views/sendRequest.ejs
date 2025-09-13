@@ -44,7 +44,7 @@
         <div class="blood-request-form">
             <h2 class="form-title">Blood Request Form</h2>
 
-            <form id="bloodRequestForm">
+            <form id="bloodRequestForm" method="POST" action="/page/confirm">
                 <div class="form-group">
                     <label for="hospitalName" class="form-label">
                         Hospital Name
@@ -70,12 +70,8 @@
                 </div>
 
                 <div class="form-buttons">
-                    <a  href="/page/confirm" class="btn btn-primary">
-                        Send Request
-                    </a>
-                    <a href="/page/bloodRecords" class="btn btn-secondary">
-                        Cancel
-                    </a>
+                    <button type="submit" class="btn btn-primary">Send Request</button>
+                    <a href="/page/bloodRecords" class="btn btn-secondary">Cancel</a>
                 </div>
             </form>
         </div>
@@ -83,14 +79,41 @@
     <!-- Footer -->
     <%- include('partials/footer.ejs') %>
 
-        <script>
-            function scrollToAbout() {
-                document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+    <script>
+        function scrollToAbout() {
+            document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const params = new URLSearchParams(window.location.search);
+            const hospitalName = params.get("hospitalName");
+            const bloodType = params.get("bloodType");
+
+            if (hospitalName) {
+                document.getElementById("hospitalName").value = hospitalName;
             }
-        </script>
-        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
+            // Optional: if you also want to display bloodType somewhere
+            if (bloodType) {
+                const notes = document.getElementById("notes");
+                notes.value = `Requesting blood type ${bloodType}`;
+            }
+
+            document.getElementById("bloodRequestForm").addEventListener("submit", (e) => {
+                const available = parseInt(document.getElementById("availableAmount").value, 10);
+                const requested = parseInt(document.getElementById("bloodAmount").value, 10);
+
+                if (requested > available) {
+                    e.preventDefault();
+                    alert(`Requested amount exceeds available stock (${available} ml).`);
+                }
+            });
+        });
+    </script>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
-
 </html>

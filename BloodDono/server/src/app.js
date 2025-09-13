@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Init middlewares
 app.use(express.json())
 app.use(morgan('dev'))
-app.use(helmet());
+// app.use(helmet());
 app.use(compression())
 app.use(cookieParser())
 app.use(bodyParser.json())
