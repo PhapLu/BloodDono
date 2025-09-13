@@ -6,11 +6,7 @@ dotenv.config()
 const checkUserLoggedIn = async (accessToken) => {
     if (accessToken) {
         try {
-            console.log('Verifying access token:', accessToken);
-            console.log('JWT SECRET:', process.env.JWT_SECRET);
-
             const decodedToken = jwt.verify(accessToken, process.env.JWT_SECRET); // Use your secret key here
-            console.log('DToken:', decodedToken);
             const user = await User.findById(decodedToken.id)
             return user
         } catch (error) {
