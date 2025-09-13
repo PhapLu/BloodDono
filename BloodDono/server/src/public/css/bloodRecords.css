@@ -452,8 +452,18 @@ body {
     transition: width 0.6s ease-in-out;
 }
 
-.btn-request, .btn-details {
+.btn-request,
+.btn-details {
     position: relative;
     z-index: 9999;
     pointer-events: auto !important;
-  }
+}
+.detail-label {
+    font-weight: 700;
+    color: var(--primary);
+}
+.detail-value {
+    color: var(--primary-dark);
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}

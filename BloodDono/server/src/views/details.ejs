@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BloodDodo - Healthcare Blood Management Platform</title>
+    <meta name="description"
+        content="BloodDodo connects hospitals across Vietnam to life-saving blood donations. Real-time blood tracking, location mapping, and 24/7 availability for healthcare professionals.">
+    <meta name="keywords" content="blood donation, healthcare, hospitals, Vietnam, blood bank, medical, blood tracking">
+    <meta name="author" content="BloodDodo">
+
+    <meta property="og:title" content="BloodDodo - Healthcare Blood Management Platform">
+    <meta property="og:description"
+        content="Connecting hospitals across Vietnam to life-saving blood donations with real-time tracking and location mapping.">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@blooddodo">
+    <link rel="stylesheet" href="/css/details.css">
+    <link rel="stylesheet" href="/css/partials/footer.css">
+    <link rel="stylesheet" href="/css/partials/headerNav.css">
+    <!-- <script defer src="all.js"></script> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navigation">
+        <div class="nav-container">
+            <div class="nav-content">
+                <!-- Logo and Brand -->
+                <%- include('partials/headerLogo') %>
+                    <!-- Navigation Links -->
+                    <%- include('partials/headerNav') %>
+            </div>
+        </div>
+    </nav>
+    <!-- Main Content -->
+    <main class="blood-detail">
+        <!-- Header -->
+        <section class="detail-header">
+            <div>
+                <h1>O− | Red Blood Cells</h1>
+                <p class="blood-type">Universal Donor • Critical Supply</p>
+            </div>
+            <div class="status available">Available</div>
+        </section>
+
+        <!-- Hospital Info -->
+        <section class="card">
+            <h2>Hospital Information</h2>
+            <ul>
+                <li><strong>Name:</strong> <span>Cho Ray Hospital</span></li>
+                <li><strong>City:</strong> <span>Ho Chi Minh City</span></li>
+                <li><strong>Region:</strong> <span>South</span></li>
+                <li><strong>Address:</strong> <span>201B Nguyen Chi Thanh, District 5</span></li>
+                <li><strong>Phone:</strong> <span><a href="tel:+842838554137"
+                            style="color: var(--primary); text-decoration: none;">(028) 3855 4137</a></span></li>
+                <li><strong>Email:</strong> <span><a href="mailto:bloodbank@choray.vn"
+                            style="color: var(--primary); text-decoration: none;">bloodbank@choray.vn</a></span></li>
+            </ul>
+        </section>
+
+        <!-- Blood Stock Details -->
+        <section class="card">
+            <h2>Inventory Details</h2>
+            <ul>
+                <li><strong>Blood Type:</strong> <span class="highlight">O-</span></li>
+                <li><strong>Product Type:</strong> <span>Red Blood Cells</span></li>
+                <li><strong>Quantity:</strong> <span class="highlight">2100</span></li>
+                <li><strong>Unit:</strong> <span>milliliters</span></li>
+                <li><strong>Threshold Low:</strong> <span>500</span></li>
+                <li><strong>Expiry Date:</strong> <span class="expiry-highlight">2025-09-20</span></li>
+                <li><strong>Batch Number:</strong> <span>CRH-O-0925-02</span></li>
+                <li><strong>Donor Source:</strong> <span>Voluntary</span></li>
+                <li><strong>Status:</strong> <span>Available</span></li>
+            </ul>
+        </section>
+
+        <!-- Blood Stock Metadata -->
+        <section class="card">
+            <h2>Stock Information</h2>
+            <ul>
+                <li><strong>Hospital ID:</strong> <span>64a1b2c3d4e5f6789abcdef0</span></li>
+                <li><strong>Last Updated:</strong> <span>2025-01-15T10:30:00Z</span></li>
+                <li><strong>Created At:</strong> <span>2024-09-15T08:00:00Z</span></li>
+                <li><strong>Updated At:</strong> <span>2025-01-15T10:30:00Z</span></li>
+            </ul>
+        </section>
+
+        <!-- Emergency Contact -->
+        <section class="emergency-contact">
+            <h3>Emergency Blood Request</h3>
+            <p>For urgent blood requests outside regular hours, call our emergency hotline: <a
+                    href="tel:+842838554100">(028) 3855 4100</a></p>
+        </section>
+
+        <!-- Actions -->
+        <section class="actions">
+            <a href="/page/sendRequest" class="btn primary">Send Blood Request</a>
+            <a href="/page/bloodRecords" class="btn muted">Back to Records</a>
+        </section>
+    </main>
+    <!-- Footer -->
+    <%- include('partials/footer.ejs') %>
+
+        <script>
+            function scrollToAbout() {
+                document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+            }
+        </script>
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

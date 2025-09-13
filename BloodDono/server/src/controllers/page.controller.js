@@ -115,6 +115,12 @@ class PageController {
         console.log(user);
         res.render("confirm", { user: user || null });
     };
+    details = async (req, res) => {
+        const accessToken = req.cookies.accessToken; // Assuming you store the accessToken in cookies
+        const user = await checkUserLoggedIn(accessToken);
+        console.log(user);
+        res.render("details", { user: user || null });
+    };
 }
 
 export default new PageController();
