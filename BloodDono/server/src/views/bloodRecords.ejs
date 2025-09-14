@@ -189,7 +189,7 @@
                     </form>
                 </div>
 
-                                <!-- Results Section -->
+                <!-- Results Section -->
                 <div class="results-section">
                     <div class="results-header">
                         <h2 class="results-title">Blood Inventory Results</h2>
@@ -197,106 +197,103 @@
                     </div>
 
                     <div class="blood-records-grid">
-                        <% if (Object.keys(filters || {}).length > 0 && results && results.length > 0) { %>
-                        <table class="blood-records-table">
-                            <thead>
-                                <tr>
-                                    <th>Blood Type & Status</th>
-                                    <th>Hospital Information</th>
-                                    <th>Blood Details</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% results.forEach(stock => { %>
-                                <% stock.inventory.forEach(item => { %>
-                                <tr class="blood-record-card" data-hospital-id="<%= stock.hospitalId?._id %>">
-                                    <% 
-                                    function bloodTypeClass(bt) {
-                                        switch (bt) {
-                                        case "A+": return "type-a-positive";
-                                        case "A-": return "type-a-negative";
-                                        case "B+": return "type-b-positive";
-                                        case "B-": return "type-b-negative";
-                                        case "AB+": return "type-ab-positive";
-                                        case "AB-": return "type-ab-negative";
-                                        case "O+": return "type-o-positive";
-                                        case "O-": return "type-o-negative";
-                                        default: return "";
-                                        }
-                                    }
-                                    %>
-                                    
-                                    <td>
-                                        <div class="card-header">
-                                            <div class="blood-type-badge <%= bloodTypeClass(item.bloodType) %>">
-                                                <%= item.bloodType %>
-                                            </div>
-                                            <div class="availability-status <%= item.status.toLowerCase().replace(/\s+/g, '-') %>">
-                                                <%= item.status %>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    
-                                    <td>
-                                        <div class="card-content">
-                                            <h3 class="hospital-name">
-                                                <%= stock.hospitalId?.name %>
-                                            </h3>
-                                            <p class="hospital-location">
-                                                <%= stock.hospitalId?.city %>, <%=
-                                                stock.hospitalId?.region %>
-                                            </p>
-                                        </div>
-                                    </td>
-                                    
-                                    <td>
-                                        <div class="blood-details">
-                                            <div class="detail-item detail-blood-type">
-                                                <span class="detail-label">Blood Type:</span>
-                                                <span class="detail-value"><%= item.bloodType %></span>
-                                            </div>
-                                            <div class="detail-item detail-amount">
-                                                <span class="detail-label">Amount:</span>
-                                                <span class="detail-value"><%= item.quantity %> <%= item.unit %></span>
-                                            </div>
-                                            <div class="detail-item detail-expiry">
-                                                <span class="detail-label">Expiry:</span>
-                                                <span class="detail-value">
-                                                    <%= item.expiryDate ? new Date(item.expiryDate).toDateString() : 'N/A' %>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    
-                                    <td>
-                                        <div class="card-actions">
-                                            <button type="button" class="btn-primary btn-request">Send Request</button>
-                                            <button type="button" class="btn-ghost btn-details">Details</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <% }) %>
-                                <% }) %>
-                            </tbody>
-                        </table>
-                        <% } else { %>
-                        <p style="color: black;">No blood stock found for selected filters.</p>
-                        <% } %>
+                        <div id="loader" class="loader" style="display:none;"></div>
+                        <div id="results-container">
+                            <% if (Object.keys(filters || {}).length > 0 && results && results.length > 0) { %>
+                                <table class="blood-records-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Blood Type & Status</th>
+                                            <th>Hospital Information</th>
+                                            <th>Blood Details</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% results.forEach(stock => { %>
+                                        <% stock.inventory.forEach(item => { %>
+                                        <tr class="blood-record-card" data-hospital-id="<%= stock.hospitalId?._id %>">
+                                            <% 
+                                            function bloodTypeClass(bt) {
+                                                switch (bt) {
+                                                case "A+": return "type-a-positive";
+                                                case "A-": return "type-a-negative";
+                                                case "B+": return "type-b-positive";
+                                                case "B-": return "type-b-negative";
+                                                case "AB+": return "type-ab-positive";
+                                                case "AB-": return "type-ab-negative";
+                                                case "O+": return "type-o-positive";
+                                                case "O-": return "type-o-negative";
+                                                default: return "";
+                                                }
+                                            }
+                                            %>
+                                            
+                                            <td>
+                                                <div class="card-header">
+                                                    <div class="blood-type-badge <%= bloodTypeClass(item.bloodType) %>">
+                                                        <%= item.bloodType %>
+                                                    </div>
+                                                    <div class="availability-status <%= item.status.toLowerCase().replace(/\s+/g, '-') %>">
+                                                        <%= item.status %>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            
+                                            <td>
+                                                <div class="card-content">
+                                                    <h3 class="hospital-name">
+                                                        <%= stock.hospitalId?.name %>
+                                                    </h3>
+                                                    <p class="hospital-location">
+                                                        <%= stock.hospitalId?.city %>, <%=
+                                                        stock.hospitalId?.region %>
+                                                    </p>
+                                                </div>
+                                            </td>
+                                            
+                                            <td>
+                                                <div class="blood-details">
+                                                    <div class="detail-item detail-blood-type">
+                                                        <span class="detail-label">Blood Type:</span>
+                                                        <span class="detail-value"><%= item.bloodType %></span>
+                                                    </div>
+                                                    <div class="detail-item detail-amount">
+                                                        <span class="detail-label">Amount:</span>
+                                                        <span class="detail-value"><%= item.quantity %> <%= item.unit %></span>
+                                                    </div>
+                                                    <div class="detail-item detail-expiry">
+                                                        <span class="detail-label">Expiry:</span>
+                                                        <span class="detail-value">
+                                                            <%= item.expiryDate ? new Date(item.expiryDate).toDateString() : 'N/A' %>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            
+                                            <td>
+                                                <div class="card-actions">
+                                                    <button type="button" class="btn-primary btn-request">Send Request</button>
+                                                    <button type="button" class="btn-ghost btn-details">Details</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <% }) %>
+                                        <% }) %>
+                                    </tbody>
+                                </table>
+                            <% } else { %>
+                                <p style="color: black;">No blood stock found for selected filters.</p>
+                            <% } %>
+                        </div>
                     </div>
 
                     <!-- Pagination -->
-                    <div class="pagination">
-                        <button class="pagination-btn" disabled>
-                            Previous
-                        </button>
-                        <div class="pagination-numbers">
-                            <button class="pagination-number active">1</button>
-                            <button class="pagination-number">2</button>
-                            <button class="pagination-number">3</button>
-                        </div>
-                        <button class="pagination-btn">Next</button>
-                    </div>
+                    <div class="pagination" style="display:none;">
+                        <button class="pagination-btn prev">Previous</button>
+                        <div class="pagination-numbers"></div>
+                        <button class="pagination-btn next">Next</button>
+                    </div>                                      
                 </div>
             </div>
             
@@ -307,68 +304,228 @@
         <!-- External JS (recommended) -->
         <script>
             document.addEventListener("DOMContentLoaded", () => {
-            // Request button
-            document.querySelectorAll(".btn-request").forEach((btn) => {
-                btn.addEventListener("click", () => {
-                    const card = btn.closest(".blood-record-card");
-                    const hospitalId = card.getAttribute("data-hospital-id"); // set in HTML
-                    const hospitalName = card.querySelector(".hospital-name").textContent.trim();
-                    const bloodType = card.querySelector(".blood-type-badge").textContent.trim();
-                    const amount = card.querySelector(".detail-amount .detail-value").textContent.trim();
+                const form = document.querySelector(".filters-container");
+                const resultsContainer = document.getElementById("results-container");
+                const loader = document.getElementById("loader");
+                const pagination = document.querySelector(".pagination");
+            
+                let allRows = [];   // store all inventory rows (flattened)
+                let currentPage = 1;
+                const pageSize = 9; // ✅ only 9 rows per page
+            
+                form.addEventListener("submit", async (e) => {
+                    e.preventDefault();
+            
+                    loader.style.display = "block";
+                    resultsContainer.innerHTML = "";
+                    pagination.style.display = "none";
+            
+                    const params = new URLSearchParams(new FormData(form));
+                    try {
+                        const res = await fetch(`/page/bloodRecords/data?${params.toString()}`);
+                        const data = await res.json();
+            
+                        // Flatten hospital+inventory into row objects
+                        allRows = [];
+                        data.results?.forEach(stock => {
+                            stock.inventory.forEach(item => {
+                                allRows.push({ stock, item });
+                            });
+                        });
+            
+                        currentPage = 1;
+                        renderPage();
+                    } catch (err) {
+                        resultsContainer.innerHTML = `<p style="color:red">❌ Error loading results</p>`;
+                    } finally {
+                        loader.style.display = "none";
+                    }
+                });
+            
+                function renderPage() {
+                    if (!allRows.length) {
+                        resultsContainer.innerHTML = `<p style="color:black">No blood stock found for selected filters.</p>`;
+                        pagination.style.display = "none";
+                        return;
+                    }
+            
+                    const totalPages = Math.ceil(allRows.length / pageSize);
+                    const start = (currentPage - 1) * pageSize;
+                    const end = start + pageSize;
+                    const pageRows = allRows.slice(start, end);
+            
+                    let html = `
+                        <table class="blood-records-table">
+                            <thead>
+                                <tr>
+                                    <th>Blood Type & Status</th>
+                                    <th>Hospital Information</th>
+                                    <th>Blood Details</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                    `;
+            
+                    pageRows.forEach(({ stock, item }) => {
+                        html += `
+                            <tr class="blood-record-card" data-hospital-id="${stock.hospitalId?._id}">
+                                <td>
+                                    <div class="card-header">
+                                        <div class="blood-type-badge">${item.bloodType}</div>
+                                        <div class="availability-status">${item.status}</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="card-content">
+                                        <h3 class="hospital-name">${stock.hospitalId?.name}</h3>
+                                        <p class="hospital-location">${stock.hospitalId?.city}, ${stock.hospitalId?.region}</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="blood-details">
+                                        <div class="detail-item detail-blood-type">
+                                            <span class="detail-label">Blood Type:</span>
+                                            <span class="detail-value">${item.bloodType}</span>
+                                        </div>
+                                        <div class="detail-item detail-amount">
+                                            <span class="detail-label">Amount:</span>
+                                            <span class="detail-value">${item.quantity} ${item.unit}</span>
+                                        </div>
+                                        <div class="detail-item detail-expiry">
+                                            <span class="detail-label">Expiry:</span>
+                                            <span class="detail-value">${item.expiryDate ? new Date(item.expiryDate).toDateString() : "N/A"}</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="card-actions">
+                                        <button type="button" class="btn-primary btn-request">Send Request</button>
+                                        <button type="button" class="btn-ghost btn-details">Details</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        `;
+                    });
+            
+                    html += `</tbody></table>`;
+                    resultsContainer.innerHTML = html;
+            
+                    attachButtonHandlers();
+            
+                    // Show pagination if more than 1 page
+                    if (totalPages > 1) {
+                        renderPagination(totalPages);
+                        pagination.style.display = "flex";
+                    } else {
+                        pagination.style.display = "none";
+                    }
+                }
+            
+                function renderPagination(totalPages) {
+                    const prevBtn = pagination.querySelector(".pagination-btn.prev");
+                    const nextBtn = pagination.querySelector(".pagination-btn.next");
+                    const numbersDiv = pagination.querySelector(".pagination-numbers");
 
-                    const params = new URLSearchParams({
-                        hospitalId,
-                        hospitalName,
-                        bloodType,
-                        availableAmount: amount.replace(/\D/g, ""), // extract just the number
+                    numbersDiv.innerHTML = "";
+
+                    // how many numbers to show around current
+                    const delta = 2;
+                    let range = [];
+                    let rangeWithDots = [];
+                    let l;
+
+                    // build visible range
+                    for (let i = 1; i <= totalPages; i++) {
+                        if (i === 1 || i === totalPages || (i >= currentPage - delta && i <= currentPage + delta)) {
+                            range.push(i);
+                        }
+                    }
+
+                    for (let i of range) {
+                        if (l) {
+                            if (i - l === 2) {
+                                rangeWithDots.push(l + 1);
+                            } else if (i - l > 2) {
+                                rangeWithDots.push("...");
+                            }
+                        }
+                        rangeWithDots.push(i);
+                        l = i;
+                    }
+
+                    // render buttons
+                    rangeWithDots.forEach(p => {
+                        const btn = document.createElement("button");
+                        if (p === "...") {
+                            btn.textContent = "...";
+                            btn.disabled = true;
+                            btn.className = "pagination-dots";
+                        } else {
+                            btn.className = "pagination-number" + (p === currentPage ? " active" : "");
+                            btn.textContent = p;
+                            btn.addEventListener("click", () => {
+                                currentPage = p;
+                                renderPage();
+                                window.scrollTo({ top: 570, behavior: "smooth" });
+                            });
+                        }
+                        numbersDiv.appendChild(btn);
                     });
 
-                    window.location.href = `/page/sendRequest?${params.toString()}`;
-                });
-            });
+                    prevBtn.disabled = currentPage === 1;
+                    nextBtn.disabled = currentPage === totalPages;
 
-            // Details button
-            document.querySelectorAll(".btn-details").forEach((btn) => {
-                btn.addEventListener("click", () => {
-                const card = btn.closest(".blood-record-card");
-                const hospitalName = card.querySelector(".hospital-name").textContent.trim();
-                const bloodType = card.querySelector(".blood-type-badge").textContent.trim();
-                const amount = card.querySelector(".detail-amount .detail-value").textContent.trim();
-                const expiry = card.querySelector(".detail-expiry .detail-value").textContent.trim();
+                    prevBtn.onclick = () => {
+                        if (currentPage > 1) {
+                            currentPage--;
+                            renderPage();
+                            window.scrollTo({ top: 570, behavior: "smooth" });
+                        }
+                    };
 
-                alert(`Details for ${hospitalName}:\nBlood Type: ${bloodType}\nAmount: ${amount}\nExpiry: ${expiry}`);
-                });
-            });
-
-            // Progress bars
-            const maxLiters = 1000;
-            document.querySelectorAll(".blood-record-card").forEach((card, index) => {
-                const amountEl = card.querySelector(".detail-amount .detail-value");
-                if (!amountEl) return;
-
-                let amountText = amountEl.textContent.toLowerCase().trim();
-                let liters = 0;
-
-                const numberMatch = amountText.match(/(\d+(?:\.\d+)?)/);
-                if (numberMatch) {
-                const number = parseFloat(numberMatch[1]);
-                if (amountText.includes("ml")) liters = number / 1000;
-                else if (amountText.includes("l")) liters = number;
+                    nextBtn.onclick = () => {
+                        if (currentPage < totalPages) {
+                            currentPage++;
+                            renderPage();
+                            window.scrollTo({ top: 570, behavior: "smooth" });
+                        }
+                    };
                 }
-
-                const percent = Math.min((liters / maxLiters) * 100, 100);
-                const bar = card.querySelector(".blood-bar");
-
-                if (bar) {
-                setTimeout(() => {
-                    bar.style.width = percent + "%";
-                    bar.setAttribute("data-percentage", Math.round(percent) + "%");
-                    bar.title = `${liters.toFixed(1)}L (${Math.round(percent)}% of capacity)`;
-                }, 200 + index * 100);
+            
+                function attachButtonHandlers() {
+                    document.querySelectorAll(".btn-request").forEach((btn) => {
+                        btn.addEventListener("click", () => {
+                            const card = btn.closest(".blood-record-card");
+                            const hospitalId = card.getAttribute("data-hospital-id");
+                            const hospitalName = card.querySelector(".hospital-name").textContent.trim();
+                            const bloodType = card.querySelector(".blood-type-badge").textContent.trim();
+                            const amount = card.querySelector(".detail-amount .detail-value").textContent.trim();
+            
+                            const params = new URLSearchParams({
+                                hospitalId,
+                                hospitalName,
+                                bloodType,
+                                availableAmount: amount.replace(/\D/g, "")
+                            });
+                            window.location.href = `/page/sendRequest?${params.toString()}`;
+                        });
+                    });
+            
+                    document.querySelectorAll(".btn-details").forEach((btn) => {
+                        btn.addEventListener("click", () => {
+                            const card = btn.closest(".blood-record-card");
+                            const hospitalName = card.querySelector(".hospital-name").textContent.trim();
+                            const bloodType = card.querySelector(".blood-type-badge").textContent.trim();
+                            const amount = card.querySelector(".detail-amount .detail-value").textContent.trim();
+                            const expiry = card.querySelector(".detail-expiry .detail-value").textContent.trim();
+                            alert(`Details for ${hospitalName}:\nBlood Type: ${bloodType}\nAmount: ${amount}\nExpiry: ${expiry}`);
+                        });
+                    });
                 }
             });
-            });
-        </script>
+            </script>
+                        
 
         <script>
             function scrollToAbout() {

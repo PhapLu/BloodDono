@@ -115,6 +115,52 @@ class PageController {
         console.log(user);
         res.render("confirm", { user: user || null });
     };
+
+    // Add to PageController
+    bloodRecordsData = async (req, res) => {
+        try {
+            const { bloodType, productType, status, location } = req.query;
+
+            let stocks = await BloodStock.find()
+                .populate("hospitalId", "name city region address")
+                .lean();
+
+            if (location) {
+                stocks = stocks.filter((s) =>
+                    s.hospitalId?.city
+                        ?.toLowerCase()
+                        .includes(location.toLowerCase())
+                );
+            }
+
+            stocks = stocks.map((s) => {
+                let filteredInventory = s.inventory;
+                if (bloodType) {
+                    filteredInventory = filteredInventory.filter(
+                        (i) => i.bloodType === bloodType
+                    );
+                }
+                if (productType) {
+                    filteredInventory = filteredInventory.filter(
+                        (i) => i.productType === productType
+                    );
+                }
+                if (status) {
+                    filteredInventory = filteredInventory.filter(
+                        (i) => i.status === status
+                    );
+                }
+                return { ...s, inventory: filteredInventory };
+            });
+
+            stocks = stocks.filter((s) => s.inventory.length > 0);
+
+            res.json({ results: stocks });
+        } catch (err) {
+            console.error("❌ Error fetching blood records:", err);
+            res.status(500).json({ error: "Server Error" });
+        }
+    };
     details = async (req, res) => {
         const accessToken = req.cookies.accessToken; // Assuming you store the accessToken in cookies
         const user = await checkUserLoggedIn(accessToken);

@@ -10,6 +10,7 @@ router.get('/landingPage', asyncHandler(pageController.landingPage))
 router.get('/bloodRecords', asyncHandler(pageController.bloodRecords))
 router.get('/sendRequest', asyncHandler(pageController.sendRequest))
 router.get('/confirm', asyncHandler(pageController.confirm))
+router.get("/bloodRecords/data", pageController.bloodRecordsData);
 router.get('/details', asyncHandler(pageController.details))
 
 export default router

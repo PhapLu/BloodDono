@@ -49,6 +49,7 @@ body {
             box-shadow: var(--shadow-card);
             background: var(--gradient-hero);
             text-align: center;
+            padding-top: 150px; /* adjust based on navbar height */
         }
 
         .success-icon {
