@@ -15,7 +15,7 @@ html {
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    line-height: 1.6;
+    
     color: hsl(213, 31%, 91%);
     background-color: hsl(0, 0%, 100%);
 }
@@ -41,93 +41,93 @@ body {
 }
 
 
-        .confirmation-container {
-            width: 100%;
-            padding: 3rem 2rem;
-            background: var(--card);
-            border-radius: 12px;
-            box-shadow: var(--shadow-card);
-            background: var(--gradient-hero);
-            text-align: center;
-            padding-top: 150px; /* adjust based on navbar height */
-        }
+.confirmation-container {
+    width: 100%;
+    padding: 3rem 2rem;
+    background: var(--card);
+    border-radius: 12px;
+    box-shadow: var(--shadow-card);
+    background: var(--gradient-hero);
+    text-align: center;
+    padding-top: 150px; /* adjust based on navbar height */
+}
 
-        .success-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1rem;
-            background: rgb(93, 214, 93);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 2.5rem;
-        }
+.success-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1rem;
+    background: rgb(93, 214, 93);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2.5rem;
+}
 
-        .confirmation-title {
-            color: rgb(93, 214, 93);
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
+.confirmation-title {
+    color: rgb(93, 214, 93);
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
 
-        .confirmation-message {
-            color: var(--primary-light);
-            font-size: 1.125rem;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
+.confirmation-message {
+    color: var(--primary-light);
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
 
-        .confirmation-subtitle {
-            color: var(--muted-foreground);
-            font-size: 1rem;
-            margin-bottom: 2.5rem;
-            line-height: 1.5;
-        }
+.confirmation-subtitle {
+    color: var(--muted-foreground);
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.5;
+}
 
-        .btn {
-            display: inline-block;
-            padding: 0.875rem 2rem;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-            border: none;
-            font-family: inherit;
-            text-decoration: none;
-            background: var(--primary);
-            color: var(--primary-foreground);
-            box-shadow: var(--shadow-button);
-        }
+.btn {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    border: none;
+    font-family: inherit;
+    text-decoration: none;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    box-shadow: var(--shadow-button);
+}
 
-        .btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px hsl(217, 91%, 60%, 0.35);
-        }
+.btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px hsl(217, 91%, 60%, 0.35);
+}
 
-        .btn:active {
-            transform: translateY(0);
-        }
+.btn:active {
+    transform: translateY(0);
+}
 
-        @media (max-width: 480px) {
-            body {
-                padding: 1rem;
-            }
-            
-            .confirmation-container {
-                padding: 2rem 1.5rem;
-            }
-            
-            .confirmation-title {
-                font-size: 1.75rem;
-            }
-            
-            .success-icon {
-                width: 60px;
-                height: 60px;
-                font-size: 2rem;
-            }
-        }
+@media (max-width: 480px) {
+    body {
+        padding: 1rem;
+    }
+    
+    .confirmation-container {
+        padding: 2rem 1.5rem;
+    }
+    
+    .confirmation-title {
+        font-size: 1.75rem;
+    }
+    
+    .success-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+    }
+}

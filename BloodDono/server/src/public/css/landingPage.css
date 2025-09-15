@@ -11,9 +11,10 @@ html {
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    line-height: 1.6;
+    
     color: hsl(213, 31%, 91%);
     background-color: hsl(0, 0%, 100%);
+    padding-top: 20px; /* adjust based on navbar height */
 }
 
 /* Healthcare Color Variables */
@@ -87,7 +88,7 @@ body {
 
 @media (min-width: 1024px) {
     .hero-title {
-        font-size: 4rem;
+        font-size: 3.5rem;
     }
 }
 
@@ -99,7 +100,7 @@ body {
 .about-card {
     background-color: var(--card);
     border-left: 4px solid var(--primary);
-    padding: 1.5rem;
+    padding: 1rem;
     border-radius: 0 0.5rem 0.5rem 0;
     box-shadow: var(--shadow-card);
 }
@@ -108,13 +109,12 @@ body {
     font-size: 1.25rem;
     font-weight: 600;
     color: var(--primary);
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
 }
 
 .about-text {
-    font-size: 1.125rem;
+    font-size: 1.1rem;
     color: var(--muted-foreground);
-    line-height: 1.7;
 }
 
 .hero-buttons {
@@ -133,7 +133,7 @@ body {
     background-color: var(--primary);
     color: var(--primary-foreground);
     border: none;
-    padding: 1.5rem 2rem;
+    padding: 1.2rem 2rem;
     font-size: 1.125rem;
     border-radius: 0.5rem;
     font-weight: 500;
@@ -150,8 +150,8 @@ body {
     background: transparent;
     border: 1px solid var(--primary);
     color: var(--primary);
-    padding: 1.5rem 2rem;
-    font-size: 1.125rem;
+    padding: 1.2rem 2rem;
+    font-size: 1.25rem;
     border-radius: 0.5rem;
     font-weight: 500;
     cursor: pointer;
@@ -208,7 +208,7 @@ body {
 
 /* Features Section */
 .features-section {
-    padding: 5rem 0;
+    padding: 3rem 0;
     background-color: hsla(217, 32%, 96%, 0.3);
 }
 
@@ -220,21 +220,21 @@ body {
 
 .features-header {
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
 }
 
 .features-title {
-    font-size: 2.75rem;
+    font-size: 2.2rem;
     font-weight: 800;
     color: hsl(217, 33%, 20%);
     text-align: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
     letter-spacing: -0.5px;
     text-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .features-subtitle {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     color: var(--muted-foreground);
     max-width: 48rem;
     margin: 0 auto;
@@ -261,7 +261,7 @@ body {
 
 .feature-card {
     background-color: var(--card);
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 0.5rem;
     text-align: center;
     box-shadow: var(--shadow-card);
@@ -300,7 +300,6 @@ body {
 
 .feature-description {
     color: var(--muted-foreground);
-    line-height: 1.7;
 }
 
 .stats-section {
@@ -358,7 +357,7 @@ body {
 
 /* Articles Section */
 .articles-section {
-    padding: 5rem 0;
+    padding: 2rem 0;
     background-color: var(--background);
 }
 
@@ -370,14 +369,13 @@ body {
 
 .articles-header {
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 2.2rem;
 }
 
 .articles-title-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1rem;
 }
 
 .heart-icon {
@@ -388,14 +386,13 @@ body {
 }
 
 .articles-title {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 700;
     color: var(--primary);
-    margin-bottom: 1rem;
 }
 
 .articles-subtitle {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     color: var(--muted-foreground);
     max-width: 48rem;
     margin: 0 auto;
@@ -536,12 +533,12 @@ body {
 /* Responsive Design */
 @media (max-width: 768px) {
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
     }
 
     .features-title,
     .articles-title {
-        font-size: 2rem;
+        font-size: 0.5rem;
     }
 
     .hero-buttons {
@@ -553,4 +550,8 @@ body {
     width: 100%;
     height: 200px;
     object-fit: cover;
+}
+
+#results-container p {
+    margin: 100px;
 }
