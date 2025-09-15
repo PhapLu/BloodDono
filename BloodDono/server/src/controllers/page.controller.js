@@ -161,11 +161,46 @@ class PageController {
             res.status(500).json({ error: "Server Error" });
         }
     };
+
     details = async (req, res) => {
-        const accessToken = req.cookies.accessToken; // Assuming you store the accessToken in cookies
-        const user = await checkUserLoggedIn(accessToken);
-        console.log(user);
-        res.render("details", { user: user || null });
+        try {
+            const accessToken = req.cookies.accessToken;
+            const hospitalId = req.params.hospitalId;
+            const { bloodType, productType } = req.query;
+
+            const user = await checkUserLoggedIn(accessToken);
+
+            const hospital = await Hospital.findById(hospitalId).lean();
+            if (!hospital) {
+                return res.status(404).render("404", { user: user || null });
+            }
+
+            // ✅ fetch all stocks for this hospital
+            const bloodStocks = await BloodStock.find({ hospitalId })
+                .populate("hospitalId")
+                .lean();
+
+            // flatten all inventory for this hospital
+            const allInventory = bloodStocks.flatMap(
+                (stock) => stock.inventory || []
+            );
+
+            // ✅ find the item the user clicked
+            const selectedItem = allInventory.find(
+                (item) =>
+                    item.bloodType === bloodType &&
+                    item.productType === productType
+            );
+
+            res.render("details", {
+                user: user || null,
+                hospital,
+                inventoryItem: selectedItem || null,
+            });
+        } catch (err) {
+            console.error("❌ Error in details:", err);
+            res.status(500).render("500", { error: err.message, user: null });
+        }
     };
 }
 

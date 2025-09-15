@@ -41,44 +41,62 @@
     </nav>
     <!-- Main Content -->
     <main class="blood-detail">
-        <!-- Header -->
+       <!-- Header -->
         <section class="detail-header">
             <div>
-                <h1>O− | Red Blood Cells</h1>
-                <p class="blood-type">Universal Donor • Critical Supply</p>
+                <h1><%= inventoryItem?.bloodType || "" %> | <%= inventoryItem?.productType || "" %></h1>
+                <p class="blood-type"><%= hospital?.name %> • <%= hospital?.city %>, <%= hospital?.region %></p>
             </div>
-            <div class="status available">Available</div>
+            <div class="status <%= (inventoryItem?.status || "").toLowerCase().replace(/\s+/g, '-') %>">
+                <%= inventoryItem?.status || "N/A" %>
+            </div>
         </section>
 
         <!-- Hospital Info -->
         <section class="card">
             <h2>Hospital Information</h2>
             <ul>
-                <li><strong>Name:</strong> <span>Cho Ray Hospital</span></li>
-                <li><strong>City:</strong> <span>Ho Chi Minh City</span></li>
-                <li><strong>Region:</strong> <span>South</span></li>
-                <li><strong>Address:</strong> <span>201B Nguyen Chi Thanh, District 5</span></li>
-                <li><strong>Phone:</strong> <span><a href="tel:+842838554137"
-                            style="color: var(--primary); text-decoration: none;">(028) 3855 4137</a></span></li>
-                <li><strong>Email:</strong> <span><a href="mailto:bloodbank@choray.vn"
-                            style="color: var(--primary); text-decoration: none;">bloodbank@choray.vn</a></span></li>
+                <li><strong>Name:</strong> <span><%= hospital?.name %></span></li>
+                <li><strong>City:</strong> <span><%= hospital?.city %></span></li>
+                <li><strong>Region:</strong> <span>Vietnam</span></li>
+                <li><strong>Address:</strong> <span><%= hospital?.address || "N/A" %></span></li>
+                <li><strong>Phone:</strong>
+                    <% if (hospital?.contact?.phone) { %>
+                        <span><a href="tel:<%= hospital.contact.phone %>" style="color: var(--primary); text-decoration: none;"><%= hospital.contact.phone %></a></span>
+                    <% } else { %>
+                        <span>028 7102 6789</span>
+                    <% } %>
+                </li>
+                <!-- <li><strong>Email:</strong>
+                    <% if (hospital?.contact?.email) { %>
+                        <span><a href="mailto:<%= hospital.contact.email %>" style="color: var(--primary); text-decoration: none;"><%= hospital.contact.email %></a></span>
+                    <% } else { %>
+                        <span>N/A</span>
+                    <% } %>
+                </li> -->
             </ul>
         </section>
 
-        <!-- Blood Stock Details -->
+        <!-- Inventory Details -->
         <section class="card">
             <h2>Inventory Details</h2>
-            <ul>
-                <li><strong>Blood Type:</strong> <span class="highlight">O-</span></li>
-                <li><strong>Product Type:</strong> <span>Red Blood Cells</span></li>
-                <li><strong>Quantity:</strong> <span class="highlight">2100</span></li>
-                <li><strong>Unit:</strong> <span>milliliters</span></li>
-                <li><strong>Threshold Low:</strong> <span>500</span></li>
-                <li><strong>Expiry Date:</strong> <span class="expiry-highlight">2025-09-20</span></li>
-                <li><strong>Batch Number:</strong> <span>CRH-O-0925-02</span></li>
-                <li><strong>Donor Source:</strong> <span>Voluntary</span></li>
-                <li><strong>Status:</strong> <span>Available</span></li>
-            </ul>
+            <% if (inventoryItem) { %>
+                <ul>
+                    <li><strong>Blood Type:</strong> <span class="highlight"><%= inventoryItem.bloodType %></span></li>
+                    <li><strong>Product Type:</strong> <span><%= inventoryItem.productType %></span></li>
+                    <li><strong>Quantity:</strong> <span class="highlight"><%= inventoryItem.quantity %></span></li>
+                    <li><strong>Unit:</strong> <span><%= inventoryItem.unit %></span></li>
+                    <li><strong>Threshold Low:</strong> <span><%= inventoryItem.thresholdLow || "N/A" %></span></li>
+                    <li><strong>Expiry Date:</strong> 
+                        <span class="expiry-highlight"><%= inventoryItem.expiryDate ? new Date(inventoryItem.expiryDate).toISOString().split('T')[0] : "N/A" %></span>
+                    </li>
+                    <li><strong>Batch Number:</strong> <span><%= inventoryItem.batchNumber || "N/A" %></span></li>
+                    <li><strong>Donor Source:</strong> <span><%= inventoryItem.donorSource || "N/A" %></span></li>
+                    <li><strong>Status:</strong> <span><%= inventoryItem.status %></span></li>
+                </ul>
+            <% } else { %>
+                <p>No matching inventory item found.</p>
+            <% } %>
         </section>
 
         <!-- Blood Stock Metadata -->
@@ -95,13 +113,16 @@
         <!-- Emergency Contact -->
         <section class="emergency-contact">
             <h3>Emergency Blood Request</h3>
-            <p>For urgent blood requests outside regular hours, call our emergency hotline: <a
-                    href="tel:+842838554100">(028) 3855 4100</a></p>
+            <p>For urgent blood requests outside regular hours, call our emergency hotline: 
+                <a href="tel:<%= hospital?.contact?.phone || '+8400000000' %>">
+                    <%= hospital?.contact?.phone || '028 7102 6789' %>
+                </a>
+            </p>
         </section>
 
         <!-- Actions -->
         <section class="actions">
-            <a href="/page/sendRequest" class="btn primary">Send Blood Request</a>
+            <button type="button" class="btn-primary btn-request">Send Request</button>
             <a href="/page/bloodRecords" class="btn muted">Back to Records</a>
         </section>
     </main>
@@ -113,6 +134,24 @@
                 document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
             }
         </script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const btn = document.querySelector(".btn-request");
+                if (btn) {
+                    btn.addEventListener("click", () => {
+                        const params = new URLSearchParams({
+                            hospitalId: "<%= hospital?._id %>",
+                            hospitalName: "<%= hospital?.name %>",
+                            bloodType: "<%= hospital?.inventory?.[0]?.bloodType || '' %>",
+                            availableAmount: "<%= hospital?.inventory?.[0]?.quantity || 0 %>"
+                        });
+                        window.location.href = `/page/sendRequest?${params.toString()}`;
+                    });
+                }
+            });
+        </script>
+    
         <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 

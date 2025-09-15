@@ -10,7 +10,7 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            
+            margin-top: 70px;
             color: hsl(213, 31%, 91%);
             background: linear-gradient(135deg, hsl(217, 32%, 98%) 0%, hsl(217, 32%, 96%) 100%);
             min-height: 100vh;
@@ -60,7 +60,7 @@
             background: var(--gradient-card);
             border: 1px solid var(--border);
             border-radius: 1.5rem;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             box-shadow: var(--shadow-card);
             position: relative;
             overflow: hidden;
@@ -78,14 +78,14 @@
         }
 
         .detail-header h1 {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 800;
             color: var(--primary-dark);
             margin-bottom: 0.5rem;
         }
 
         .blood-type {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: var(--muted-foreground);
             font-weight: 600;
         }
@@ -134,7 +134,7 @@
             background: var(--gradient-card);
             border: 1px solid var(--border);
             border-radius: 1.5rem;
-            padding: 2rem;
+            padding: 0.5rem 1.4rem 0.8rem 1.4rem;
             margin-bottom: 2rem;
             box-shadow: var(--shadow-card);
             transition: var(--transition-smooth);
@@ -164,8 +164,8 @@
         }
 
         .card h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.7rem;
+            margin-bottom: 1rem;
             color: indianred;
             font-weight: 700;
             display: flex;

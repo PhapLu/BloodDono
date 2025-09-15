@@ -274,7 +274,15 @@
                                             <td>
                                                 <div class="card-actions">
                                                     <button type="button" class="btn-primary btn-request">Send Request</button>
-                                                    <button type="button" class="btn-ghost btn-details">Details</button>
+                                                    <button 
+                                                        type="button" 
+                                                        class="btn-ghost btn-details"
+                                                        data-hospital-id="<%= stock.hospitalId?._id %>"
+                                                        data-blood-type="<%= item.bloodType %>"
+                                                        data-product-type="<%= item.productType %>">
+                                                        Details
+                                                    </button>
+
                                                 </div>
                                             </td>
                                         </tr>
@@ -400,8 +408,20 @@
                                 </td>
                                 <td>
                                     <div class="card-actions">
-                                        <button type="button" class="btn-primary btn-request">Send Request</button>
-                                        <button type="button" class="btn-ghost btn-details">Details</button>
+                                        <td>
+                                            <div class="card-actions">
+                                                <button type="button" class="btn-primary btn-request">Send Request</button>
+                                                <button 
+                                                type="button" 
+                                                class="btn-ghost btn-details"
+                                                data-hospital-id="${stock.hospitalId?._id || stock.hospitalId}"
+                                                data-blood-type="${item.bloodType}"
+                                                data-product-type="${item.productType}">
+                                                Details
+                                                </button>
+                                            </div>
+                                        </td>
+
                                     </div>
                                 </td>
                             </tr>
@@ -514,12 +534,11 @@
             
                     document.querySelectorAll(".btn-details").forEach((btn) => {
                         btn.addEventListener("click", () => {
-                            const card = btn.closest(".blood-record-card");
-                            const hospitalName = card.querySelector(".hospital-name").textContent.trim();
-                            const bloodType = card.querySelector(".blood-type-badge").textContent.trim();
-                            const amount = card.querySelector(".detail-amount .detail-value").textContent.trim();
-                            const expiry = card.querySelector(".detail-expiry .detail-value").textContent.trim();
-                            alert(`Details for ${hospitalName}:\nBlood Type: ${bloodType}\nAmount: ${amount}\nExpiry: ${expiry}`);
+                            const hospitalId = btn.dataset.hospitalId;
+                            const bloodType = btn.dataset.bloodType;
+                            const productType = btn.dataset.productType;
+
+                            window.location.href = `/page/details/${hospitalId}?bloodType=${encodeURIComponent(bloodType)}&productType=${encodeURIComponent(productType)}`;
                         });
                     });
                 }
