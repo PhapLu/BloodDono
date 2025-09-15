@@ -193,7 +193,7 @@
                 <div class="results-section">
                     <div class="results-header">
                         <h2 class="results-title">Blood Inventory Results</h2>
-                        <span class="results-count">Showing 1421 records</span>
+                        <!-- <span class="results-count">Showing 1421 records</span> -->
                     </div>
 
                     <div class="blood-records-grid">
@@ -408,21 +408,17 @@
                                 </td>
                                 <td>
                                     <div class="card-actions">
-                                        <td>
-                                            <div class="card-actions">
-                                                <button type="button" class="btn-primary btn-request">Send Request</button>
-                                                <button 
-                                                type="button" 
-                                                class="btn-ghost btn-details"
-                                                data-hospital-id="${stock.hospitalId?._id || stock.hospitalId}"
-                                                data-blood-type="${item.bloodType}"
-                                                data-product-type="${item.productType}">
-                                                Details
-                                                </button>
-                                            </div>
-                                        </td>
-
+                                        <button type="button" class="btn-primary btn-request">Send Request</button>
+                                        <button 
+                                        type="button" 
+                                        class="btn-ghost btn-details"
+                                        data-hospital-id="${stock.hospitalId?._id || stock.hospitalId}"
+                                        data-blood-type="${item.bloodType}"
+                                        data-product-type="${item.productType}">
+                                        Details
+                                        </button>
                                     </div>
+                                </td>
                                 </td>
                             </tr>
                         `;
