@@ -18,7 +18,6 @@ import './configs/passport.config.js'
 import router from './routes/index.js'
 import SocketServices from './controllers/socket.service.js';
 import sanitizeInputs from './middlewares/sanitize.middleware.js'
-// import './configs/sitemapCron.config.js'
 const app = express()
 
 // Set EJS as the view engine 
@@ -31,7 +30,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Init middlewares
 app.use(express.json())
 app.use(morgan('dev'))
-// app.use(helmet());
 app.use(compression())
 app.use(cookieParser())
 app.use(bodyParser.json())
