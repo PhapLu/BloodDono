@@ -6,6 +6,11 @@ import { generateToken } from "../utils/token.util.js"
 import dotenv from 'dotenv'
 dotenv.config()
 
+const callbackURL =
+  process.env.NODE_ENV === "production"
+    ? `${process.env.PRODUCTION_URL}/auth/google/callback`
+    : `${process.env.LOCAL_URL}/auth/google/callback`;
+console.log("Google OAuth Callback URL:", callbackURL);
 // Set axios timeout
 axios.defaults.timeout = 10000 // 10 seconds
 
@@ -14,7 +19,7 @@ passport.use(
         {
             clientID: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-            callbackURL: 'http://localhost:3000/auth/google/callback'
+            callbackURL: callbackURL
         },
         async (accessToken, refreshToken, profile, done) => {
             try {
