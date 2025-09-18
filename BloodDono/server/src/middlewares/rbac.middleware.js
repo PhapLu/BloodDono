@@ -4,10 +4,10 @@ const ac = new AccessControl()
 const roles = () => {
 	ac.grant("member").deleteOwn("profile").updateOwn("profile").readOwn("profile").createOwn("profile")
 
-	ac.grant("hotel").extend("member").readAny("profile")
+	ac.grant("hospital").extend("member").readAny("profile")
 
 	ac.grant("admin")
-		.extend("hotel")
+		.extend("hospital")
 		.updateAny("profile")
 		.deleteAny("profile")
 		.createAny("profile")
